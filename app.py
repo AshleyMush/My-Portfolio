@@ -34,6 +34,10 @@ def project1():
 def project2():
     return render_template('project-2.html')
 
+@app.route('/project-3', methods = ['GET', 'POST'])
+def project3():
+    return render_template('project-2.html')
+
 
 
 
