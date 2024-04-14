@@ -29,7 +29,7 @@ def home():
 def project1():
     return render_template('project-1.html')
 
-#
+##
 @app.route('/project-2', methods = ['GET', 'POST'])
 def project2():
     return render_template('project-2.html')
