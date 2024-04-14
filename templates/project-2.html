@@ -12,6 +12,8 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<link rel="stylesheet" href="/static/assets/css/main.css" />
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 	<noscript>
 		<link rel="stylesheet" href="/static/assets/css/noscript.css" />
 	</noscript>
@@ -25,21 +27,22 @@
 
 		<!-- Nav -->
 		<nav id="nav">
+			<a href="#project" class="icon solid fa-star"><span>Work</span></a>
 			<a href="#work" class="icon solid fa-folder"><span>Work</span></a>
 			<a href="{{url_for('home')}}" class="icon solid fa-home"><span>Home</span></a>
 
 			<a href="#contact" class="icon solid fa-envelope"><span>Contact</span></a>
-			<a href="https://twitter.com/ajlkn" class="icon brands fa-twitter"><span>Twitter</span></a>
+			<a href="#about" class="icon fa-solid fa-file"><span>About</span></a>
 		</nav>
 
 		<!-- Main -->
 		<div id="main">
-
-			<!-- Me -->
-			<article id="work" class="panel">
+			<!-- All Projects -->
+			<article id="project" class="panel">
 				<header>
 					<h2 class="apple-font">Project 2</h2>
 				</header>
+				
 				<p>This is project 2</p>
 				<section>
 					<div class="container">
@@ -47,32 +50,37 @@
 							<!-- Image Column -->
 							<div class="col-md-6">
 								<div class="thumbnail-container">
-								<a href="https://youtu.be/DJnH0jR8y5Q" target="_blank" >
-									<!--Youtube image-->
-									<img src="https://img.youtube.com/vi/DJnH0jR8y5Q/maxresdefault.jpg" alt="YouTube Video Thumbnail" class="img-fluid youtube-thumbnails">
-									<!-- Youtube Thumbnail-->
-									<svg width="64px" height="64px" viewBox="0 -7 48 48" class="youtube-logo" version="1.1" xmlns="http://www.w3.org/2000/svg"
-										xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000">
-										<g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-										<g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-										<g id="SVGRepo_iconCarrier">
-											<title>Youtube-color</title>
-											<desc>Created with Sketch.</desc>
-											<defs> </defs>
-											<g id="Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-												<g id="Color-" transform="translate(-200.000000, -368.000000)" fill="#FF0303">
-													<path
-														d="M219.044,391.269916 L219.0425,377.687742 L232.0115,384.502244 L219.044,391.269916 Z M247.52,375.334163 C247.52,375.334163 247.0505,372.003199 245.612,370.536366 C243.7865,368.610299 241.7405,368.601235 240.803,368.489448 C234.086,368 224.0105,368 224.0105,368 L223.9895,368 C223.9895,368 213.914,368 207.197,368.489448 C206.258,368.601235 204.2135,368.610299 202.3865,370.536366 C200.948,372.003199 200.48,375.334163 200.48,375.334163 C200.48,375.334163 200,379.246723 200,383.157773 L200,386.82561 C200,390.73817 200.48,394.64922 200.48,394.64922 C200.48,394.64922 200.948,397.980184 202.3865,399.447016 C204.2135,401.373084 206.612,401.312658 207.68,401.513574 C211.52,401.885191 224,402 224,402 C224,402 234.086,401.984894 240.803,401.495446 C241.7405,401.382148 243.7865,401.373084 245.612,399.447016 C247.0505,397.980184 247.52,394.64922 247.52,394.64922 C247.52,394.64922 248,390.73817 248,386.82561 L248,383.157773 C248,379.246723 247.52,375.334163 247.52,375.334163 L247.52,375.334163 Z"
-														id="Youtube"> </path>
+									<a href="https://youtu.be/DJnH0jR8y5Q" target="_blank">
+										<!--Youtube image-->
+										<img src="https://img.youtube.com/vi/DJnH0jR8y5Q/maxresdefault.jpg"
+											alt="YouTube Video Thumbnail" class="img-fluid youtube-thumbnails">
+										<!-- Youtube Thumbnail-->
+										<svg width="64px" height="64px" viewBox="0 -7 48 48" class="youtube-logo"
+											version="1.1" xmlns="http://www.w3.org/2000/svg"
+											xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000">
+											<g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+											<g id="SVGRepo_tracerCarrier" stroke-linecap="round"
+												stroke-linejoin="round"></g>
+											<g id="SVGRepo_iconCarrier">
+												<title>Youtube-color</title>
+												<desc>Created with Sketch.</desc>
+												<defs> </defs>
+												<g id="Icons" stroke="none" stroke-width="1" fill="none"
+													fill-rule="evenodd">
+													<g id="Color-" transform="translate(-200.000000, -368.000000)"
+														fill="#FF0303">
+														<path
+															d="M219.044,391.269916 L219.0425,377.687742 L232.0115,384.502244 L219.044,391.269916 Z M247.52,375.334163 C247.52,375.334163 247.0505,372.003199 245.612,370.536366 C243.7865,368.610299 241.7405,368.601235 240.803,368.489448 C234.086,368 224.0105,368 224.0105,368 L223.9895,368 C223.9895,368 213.914,368 207.197,368.489448 C206.258,368.601235 204.2135,368.610299 202.3865,370.536366 C200.948,372.003199 200.48,375.334163 200.48,375.334163 C200.48,375.334163 200,379.246723 200,383.157773 L200,386.82561 C200,390.73817 200.48,394.64922 200.48,394.64922 C200.48,394.64922 200.948,397.980184 202.3865,399.447016 C204.2135,401.373084 206.612,401.312658 207.68,401.513574 C211.52,401.885191 224,402 224,402 C224,402 234.086,401.984894 240.803,401.495446 C241.7405,401.382148 243.7865,401.373084 245.612,399.447016 C247.0505,397.980184 247.52,394.64922 247.52,394.64922 C247.52,394.64922 248,390.73817 248,386.82561 L248,383.157773 C248,379.246723 247.52,375.334163 247.52,375.334163 L247.52,375.334163 Z"
+															id="Youtube"> </path>
+													</g>
 												</g>
 											</g>
-										</g>
-									</svg>
+										</svg>
 
-								</a>
+									</a>
 								</div>
 
-								
+
 
 							</div>
 							<!-- Text Column -->
@@ -82,45 +90,115 @@
 									<p><strong>Category:</strong> Web design</p>
 									<p><strong>Client:</strong> ASU Company</p>
 									<p><strong>Project date:</strong> 01 March, 2020</p>
-									<p><strong>Project URL:</strong> <a href="http://www.example.com" target="_blank">www.example.com</a></p>
+									<p><strong>Project URL:</strong> <a href="http://www.example.com"
+											target="_blank">www.example.com</a></p>
 								</div>
 							</div>
 							<!-- Project Details  -->
 							<div class="col-md-12 mt-0 pt-0">
 								<div class="project-detail">
 									<h3>This is an example of portfolio detail</h3>
-									<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum itaque molestiae odio dicta ullam magnam animi perferendis a. Exercitationem, natus. Quidem aut cumque deleniti pariatur delectus itaque numquam tempore quo?</p>
-									<button class="btn btn-primary demo-button">See Demonstration</button>
+									<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum itaque molestiae
+										odio dicta
+										ullam magnam animi perferendis a. Exercitationem, natus. Quidem aut cumque
+										deleniti pariatur
+										delectus itaque numquam tempore quo?</p>
 								</div>
 							</div>
 						</div>
 					</div>
 				</section>
+
+				
 			</article>
 
-			<!-- Project -->
-			<article id="work" class="panel intro">
+			<!-- Work -->
+			<article id="work" class="panel">
 				<header>
-					<h2>Project 2</h2>
+					<h1 class="apple-font">Projects</h1>
 				</header>
 				<p>
-					Phasellus enim sapien, blandit ullamcorper elementum eu, condimentum eu elit.
-					Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia
-					luctus elit eget interdum.
+					Here's a list of some of my favourite projects!
 				</p>
+				<section>
+					<div class="row">
+
+						<!--Project 1-->
+						<div class="col-4 col-6-medium col-12-small ">
+							<a href="{{url_for ('project1')}}" class="image fit ">
+								<img src="/static/images/pic05.jpg" class="project-card" alt="">
+								<div class="project-name">Project Name</div>
+
+							</a>
+						</div>
+						<!--Project 2-->
+
+						<div class="col-4 col-6-medium col-12-small ">
+							<a href="{{url_for ('project2')}}" class="image fit">
+								<img src="/static/images/pic05.jpg" class="project-card" alt="">
+								<div class="project-name">Project Name</div>
+
+							</a>
+						</div>
+
+
+						<!--Project 3-->
+						<div class="col-4 col-6-medium col-12-small ">
+							<a href="#" class="image fit">
+								<img src="/static/images/pic05.jpg" class="project-card" alt="">
+								<div class="project-name">Project Name</div>
+
+							</a>
+						</div>
+
+
+						<!--Project 4-->
+						<div class="col-4 col-6-medium col-12-small ">
+							<a href="#" class="image fit">
+								<img src="/static/images/pic05.jpg" class="project-card" alt="">
+								<div class="project-name">Project Name</div>
+							</a>
+						</div>
+
+						<!--Project 5-->
+						<div class="col-4 col-6-medium col-12-small ">
+							<a href="#" class="image fit">
+								<img src="/static/images/pic05.jpg" class="project-card" alt="">
+								<div class="project-name">Project Name</div>
+
+							</a>
+						</div>
+						<!--project 6-->
+						<div class="col-4 col-6-medium col-12-small ">
+							<a href="#" class="image fit">
+								<img src="/static/images/pic05.jpg" class="project-card" alt="">
+								<div class="project-name">Project Name</div>
+							</a>
+						</div>
+
+
+
+
+					</div>
+				</section>
+			</article>
+
+			<!-- Me -->
+			<article id="home" class="panel intro">
+				<header>
+					<h1 class="apple-font">Ashley Tanaka </h1>
+					<h3>Software Engineer</h3>
+				</header>
 				<a href="#work" class="jumplink pic">
 					<span class="arrow icon solid fa-chevron-right"><span>See my work</span></span>
 					<img src="/static/images/me.jpg" alt="" />
 				</a>
-				<section>
-
-				</section>
 			</article>
 
 			<!-- Contact -->
 			<article id="contact" class="panel">
 				<header>
-					<h2>Contact Me</h2>
+					<h1 class="apple-font">Contact Me</h1>
 				</header>
 				<form action="#" method="post">
 					<div>
@@ -138,12 +216,105 @@
 								<textarea name="message" placeholder="Message" rows="6"></textarea>
 							</div>
 							<div class="col-12">
-								<input type="submit" value="Send Message" />
+								<input type="submit" class="btn btn-dark" value="Send Message" />
 							</div>
 						</div>
 					</div>
 				</form>
 			</article>
+
+			<!--Resume-->
+			<article id="about" class="panel">
+			
+				<div class="d-flex">
+			
+					<!--Todo: Add download link for resume -->
+					<button type="button" class="btn btn-dark mb-3 ms-auto">
+						Download Resume <span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+								class="bi bi-arrow-down-circle-fill" viewBox="0 0 16 16">
+								<path
+									d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293z" />
+							</svg></span>
+					</button>
+				</div>
+			
+				<h1 class="apple-font">About Me</h1>
+			
+				<!-- Summary -->
+				<section class="summary-section">
+					<h2>Technologies</h2>
+					<ul class="contact-info">
+						<li>Python: Both for web development and data science</li>
+						<li>Objective-C</li>
+						<li>C</li>
+						<li>Java Script</li>
+					</ul>
+				</section>
+			
+				<!-- Education -->
+				<section class="education-section">
+					<h3>Education</h3>
+					<ul class="list-group">
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-circle"
+							viewBox="0 0 16 16">
+							<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+						</svg>
+						<div class="job">
+							<li>
+								<h4 class="job-title">MASTER OF FINE ARTS & GRAPHIC DESIGN</h4>
+								<p class="job-description">2015 - 2016 | Rochester Institute of Technology, Rochester, NY</p>
+							</li>
+						</div>
+			
+			
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-circle"
+							viewBox="0 0 16 16">
+							<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+						</svg>
+			
+						<div class="job">
+							<li>
+								<h4 class="job-title">BACHELOR OF FINE ARTS & GRAPHIC DESIGN</h4>
+								<p class="job-description">2010 - 2014 | Rochester Institute of Technology, Rochester, NY</p>
+							</li>
+						</div>
+					</ul>
+				</section>
+			
+				<!-- Professional Experience -->
+				<section class="professional-experience">
+					<h3>Professional Experience</h3>
+					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-circle"
+						viewBox="0 0 16 16">
+						<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+					</svg>
+					<div class="job">
+						<h4 class="job-title">SENIOR GRAPHIC DESIGN SPECIALIST</h4>
+						<p class="job-description">2019 - Present | Experion, New York, NY</p>
+						<ul>
+							<li>Lead in the design, development, and implementation of the graphic...</li>
+							<!-- More items -->
+						</ul>
+					</div>
+					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-circle"
+						viewBox="0 0 16 16">
+						<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+					</svg>
+					<div class="job">
+						<h4 class="job-title">GRAPHIC DESIGN SPECIALIST</h4>
+						<p class="job-description">2017 - 2018 | Stepping Stone Advertising, New York, NY</p>
+						<ul>
+							<li>Developed numerous marketing programs (logos, brochures, infographics, presentations, and
+								advertisements).</li>
+							<!-- More items -->
+						</ul>
+					</div>
+				</section>
+			
+			
+			
+			</article>
+
 
 
 
@@ -164,6 +335,9 @@
 	<script src="/static/assets//js/breakpoints.min.js"></script>
 	<script src="/static/assets/js/util.js"></script>
 	<script src="/static/assets/js/main.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+			integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+			crossorigin="anonymous"></script>
 
 </body>
 
