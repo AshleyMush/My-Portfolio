@@ -51,6 +51,8 @@ def project5():
 def project6():
     return render_template('project-6.html')
 
+
+#TODO fix download route
 @app.route('/download', methods=['GET','POST'])
 def download():
     return send_from_directory('static', path="files/cheat_sheet.pf")
