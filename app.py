@@ -53,9 +53,10 @@ def project6():
 
 
 #TODO fix download route
-@app.route('/download', methods=['GET','POST'])
+@app.route('/download', methods=['GET', 'POST'])
 def download():
-    return send_from_directory('static', path="files/cheat_sheet.pf")
+    return send_from_directory(directory='static/files', filename='CV.pdf', as_attachment=True)
+
 
 
 
