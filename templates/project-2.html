@@ -29,10 +29,11 @@
 		<nav id="nav">
 			<a href="#project" class="icon solid fa-star"><span>Work</span></a>
 			<a href="#work" class="icon solid fa-folder"><span>Work</span></a>
-			<a href="{{url_for('home')}}" class="icon solid fa-home"><span>Home</span></a>
+
 
 			<a href="#contact" class="icon solid fa-envelope"><span>Contact</span></a>
 			<a href="#about" class="icon fa-solid fa-file"><span>About</span></a>
+			<a href="{{url_for('home')}}" class="icon solid fa-home"><span>Home</span></a>
 		</nav>
 
 		<!-- Main -->
@@ -144,7 +145,7 @@
 
 						<!--Project 3-->
 						<div class="col-4 col-6-medium col-12-small ">
-							<a href="#" class="image fit">
+							<a href="{{url_for ('project3')}}" class="image fit">
 								<img src="/static/images/pic05.jpg" class="project-card" alt="">
 								<div class="project-name">Project Name</div>
 
@@ -154,7 +155,7 @@
 
 						<!--Project 4-->
 						<div class="col-4 col-6-medium col-12-small ">
-							<a href="#" class="image fit">
+							<a href="{{url_for ('project4')}}" class="image fit">
 								<img src="/static/images/pic05.jpg" class="project-card" alt="">
 								<div class="project-name">Project Name</div>
 							</a>
@@ -162,7 +163,7 @@
 
 						<!--Project 5-->
 						<div class="col-4 col-6-medium col-12-small ">
-							<a href="#" class="image fit">
+							<a href="{{url_for ('project5')}}" class="image fit">
 								<img src="/static/images/pic05.jpg" class="project-card" alt="">
 								<div class="project-name">Project Name</div>
 
@@ -170,7 +171,7 @@
 						</div>
 						<!--project 6-->
 						<div class="col-4 col-6-medium col-12-small ">
-							<a href="#" class="image fit">
+							<a href="{{url_for ('project6')}}" class="image fit">
 								<img src="/static/images/pic05.jpg" class="project-card" alt="">
 								<div class="project-name">Project Name</div>
 							</a>
@@ -183,17 +184,7 @@
 				</section>
 			</article>
 
-			<!-- Me -->
-			<article id="home" class="panel intro">
-				<header>
-					<h1 class="apple-font">Ashley Tanaka </h1>
-					<h3>Software Engineer</h3>
-				</header>
-				<a href="#work" class="jumplink pic">
-					<span class="arrow icon solid fa-chevron-right"><span>See my work</span></span>
-					<img src="/static/images/me.jpg" alt="" />
-				</a>
-			</article>
+
 
 			<!-- Contact -->
 			<article id="contact" class="panel">
@@ -313,6 +304,18 @@
 			
 			
 			
+			</article>
+
+						<!-- Home -->
+			<article id="home" class="panel intro">
+				<header>
+					<h1 class="apple-font">Ashley Tanaka </h1>
+					<h3>Software Engineer</h3>
+				</header>
+				<a href="#work" class="jumplink pic">
+					<span class="arrow icon solid fa-chevron-right"><span>See my work</span></span>
+					<img src="/static/images/me.jpg" alt="" />
+				</a>
 			</article>
 
 
