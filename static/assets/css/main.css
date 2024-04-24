@@ -1390,6 +1390,16 @@ input, select, textarea {
 
 	}
 
+		.message-sent {
+			padding-bottom: 10px;
+			letter-spacing: -0.015em;
+			background-clip: text;
+			-webkit-background-clip: text;
+			color: transparent;
+			background-size: cover;
+			background-image: linear-gradient(135deg, #81FBB8 10%, #28C76F 100%);
+		}
+
 	h1 {
 		font-weight: 800 !important;
 		font-size: 2.4em;

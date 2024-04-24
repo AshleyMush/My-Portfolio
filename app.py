@@ -16,6 +16,8 @@ ckeditor = CKEditor(app)
 Bootstrap5(app)
 
 
+#TODO Add Favicon
+
 @app.route('/', methods=['GET', 'POST'])
 def home():
     current_year = datetime.now().year
@@ -29,8 +31,12 @@ def home():
 
         send_confirmation_email(name=name, email=email, subject=subject)
         send_email(name=name, subject=subject, email=email, message=message)
+        return render_template('index.html', current_year=current_year, msg_sent=True)
 
-    return render_template('index.html', current_year=current_year)
+    return render_template('index.html', current_year=current_year, msg_sent=False)
+
+
+
 @app.route('/example', methods=['GET', 'POST'])
 def example():
     return render_template('404.html')
@@ -39,38 +45,117 @@ def example():
 
 @app.route('/project-1', methods=['GET', 'POST'])
 def project1():
-    return render_template('project-1.html')
+    current_year = datetime.now().year
+
+    if request.method == "POST":
+        data = request.form
+
+        name, email, subject, message = data['name'], data['email'], data['subject'], data['message']
+
+        print(f"{name, email, subject, message}")
+
+        send_confirmation_email(name=name, email=email, subject=subject)
+        send_email(name=name, subject=subject, email=email, message=message)
+        return render_template('project-1.html', current_year=current_year, msg_sent=True)
+
+    return render_template('project-1.html', current_year=current_year, msg_sent=False)
 
 
 @app.route('/project-2', methods=['GET', 'POST'])
 def project2():
-    return render_template('project-2.html')
+    current_year = datetime.now().year
+
+    if request.method == "POST":
+        data = request.form
+
+        name, email, subject, message = data['name'], data['email'], data['subject'], data['message']
+
+        print(f"{name, email, subject, message}")
+
+        send_confirmation_email(name=name, email=email, subject=subject)
+        send_email(name=name, subject=subject, email=email, message=message)
+        return render_template('project-2.html', current_year=current_year, msg_sent=True)
+
+    return render_template('project-2.html', current_year=current_year, msg_sent=False)
 
 
 @app.route('/project-3', methods=['GET', 'POST'])
 def project3():
-    return render_template('project-3.html')
+    current_year = datetime.now().year
+
+    if request.method == "POST":
+        data = request.form
+
+        name, email, subject, message = data['name'], data['email'], data['subject'], data['message']
+
+        print(f"{name, email, subject, message}")
+
+        send_confirmation_email(name=name, email=email, subject=subject)
+        send_email(name=name, subject=subject, email=email, message=message)
+        return render_template('project-3.html', current_year=current_year, msg_sent=True)
+
+    return render_template('project-3.html', current_year=current_year, msg_sent=False)
 
 
 @app.route('/project-4', methods=['GET', 'POST'])
 def project4():
-    return render_template('project-4.html')
+    current_year = datetime.now().year
+
+    if request.method == "POST":
+        data = request.form
+
+        name, email, subject, message = data['name'], data['email'], data['subject'], data['message']
+
+        print(f"{name, email, subject, message}")
+
+        send_confirmation_email(name=name, email=email, subject=subject)
+        send_email(name=name, subject=subject, email=email, message=message)
+        return render_template('project-4.html', current_year=current_year, msg_sent=True)
+
+    return render_template('project-4.html', current_year=current_year, msg_sent=False)
 
 
 @app.route('/project-5', methods=['GET', 'POST'])
 def project5():
-    return render_template('project-5.html')
+    current_year = datetime.now().year
+
+    if request.method == "POST":
+        data = request.form
+
+        name, email, subject, message = data['name'], data['email'], data['subject'], data['message']
+
+        print(f"{name, email, subject, message}")
+
+        send_confirmation_email(name=name, email=email, subject=subject)
+        send_email(name=name, subject=subject, email=email, message=message)
+        return render_template('project-5.html', current_year=current_year, msg_sent=True)
+
+    return render_template('project-5.html', current_year=current_year, msg_sent=False)
 
 
 @app.route('/project-6', methods=['GET', 'POST'])
 def project6():
-    return render_template('project-6.html')
+    current_year = datetime.now().year
+
+    if request.method == "POST":
+        data = request.form
+
+        name, email, subject, message = data['name'], data['email'], data['subject'], data['message']
+
+        print(f"{name, email, subject, message}")
+
+        send_confirmation_email(name=name, email=email, subject=subject)
+        send_email(name=name, subject=subject, email=email, message=message)
+        return render_template('project-6.html', current_year=current_year, msg_sent=True)
+
+    return render_template('project-6.html', current_year=current_year, msg_sent=False)
 
 
-# TODO fix download route
 @app.route('/download', methods=['GET', 'POST'])
 def download():
-    return send_from_directory(directory='static/files', filename='CV.pdf', as_attachment=True)
+    return send_from_directory('static', path="files/CV.pdf", as_attachment=True)
+
+
 
 
 
