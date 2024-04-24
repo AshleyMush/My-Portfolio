@@ -153,7 +153,7 @@ def project6():
 
 @app.route('/download', methods=['GET', 'POST'])
 def download():
-    return send_from_directory('static', path="files/CV.pdf", as_attachment=True)
+    return send_from_directory('static', path="files/HW.pdf", as_attachment=True)
 
 
 
