@@ -1,351 +1,81 @@
-<!DOCTYPE HTML>
+{% extends 'project-base.html' %}
 
-<html>
-
-<head>
-
-	<title>Ashley Tanaka</title>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	<link rel="stylesheet" href="/static/assets/css/main.css" />
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-		integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-	<noscript>
-		<link rel="stylesheet" href="/static/assets/css/noscript.css" />
-	</noscript>
-
-</head>
-
-<body class="is-preload">
-
-	<!-- Wrapper-->
-	<div id="wrapper">
-
-		<!-- Nav -->
-		<nav id="nav">
-			<a href="#project" class="icon solid fa-star"><span>Work</span></a>
-			<a href="#work" class="icon solid fa-folder"><span>Work</span></a>
-
-
-			<a href="#contact" class="icon solid fa-envelope"><span>Contact</span></a>
-			<a href="#about" class="icon fa-solid fa-file"><span>About</span></a>
-			<a href="{{url_for('home')}}" class="icon solid fa-home"><span>Home</span></a>
-		</nav>
-
-		<!-- Main -->
-		<div id="main">
-			<!-- All Projects -->
-			<article id="project" class="panel">
-				<header>
-					<h2 class="apple-font">Project 1</h2>
-				</header>
-
-				<p>This is project 1</p>
-				<section>
-					<div class="container">
-						<div class="row">
-							<!-- Image Column -->
-							<div class="col-md-6">
-								<div class="thumbnail-container">
-									<a href="https://youtu.be/DJnH0jR8y5Q" target="_blank">
-										<!--Youtube image-->
-										<img src="https://img.youtube.com/vi/DJnH0jR8y5Q/maxresdefault.jpg"
-											alt="YouTube Video Thumbnail" class="img-fluid youtube-thumbnails">
-										<!-- Youtube Thumbnail-->
-										<svg width="64px" height="64px" viewBox="0 -7 48 48" class="youtube-logo"
-											version="1.1" xmlns="http://www.w3.org/2000/svg"
-											xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000">
-											<g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-											<g id="SVGRepo_tracerCarrier" stroke-linecap="round"
-												stroke-linejoin="round"></g>
-											<g id="SVGRepo_iconCarrier">
-												<title>Youtube-color</title>
-												<desc>Created with Sketch.</desc>
-												<defs> </defs>
-												<g id="Icons" stroke="none" stroke-width="1" fill="none"
-													fill-rule="evenodd">
-													<g id="Color-" transform="translate(-200.000000, -368.000000)"
-														fill="#FF0303">
-														<path
-															d="M219.044,391.269916 L219.0425,377.687742 L232.0115,384.502244 L219.044,391.269916 Z M247.52,375.334163 C247.52,375.334163 247.0505,372.003199 245.612,370.536366 C243.7865,368.610299 241.7405,368.601235 240.803,368.489448 C234.086,368 224.0105,368 224.0105,368 L223.9895,368 C223.9895,368 213.914,368 207.197,368.489448 C206.258,368.601235 204.2135,368.610299 202.3865,370.536366 C200.948,372.003199 200.48,375.334163 200.48,375.334163 C200.48,375.334163 200,379.246723 200,383.157773 L200,386.82561 C200,390.73817 200.48,394.64922 200.48,394.64922 C200.48,394.64922 200.948,397.980184 202.3865,399.447016 C204.2135,401.373084 206.612,401.312658 207.68,401.513574 C211.52,401.885191 224,402 224,402 C224,402 234.086,401.984894 240.803,401.495446 C241.7405,401.382148 243.7865,401.373084 245.612,399.447016 C247.0505,397.980184 247.52,394.64922 247.52,394.64922 C247.52,394.64922 248,390.73817 248,386.82561 L248,383.157773 C248,379.246723 247.52,375.334163 247.52,375.334163 L247.52,375.334163 Z"
-															id="Youtube"> </path>
-													</g>
-												</g>
-											</g>
-										</svg>
-
-									</a>
-								</div>
-
-
-
-							</div>
-							<!-- Text Column -->
-							<div class="col-md-6">
-								<!-- Project Information -->
-								<div class="project-info my-4">
-									<p><strong>Category:</strong> Web design</p>
-									<p><strong>Client:</strong> ASU Company</p>
-									<p><strong>Project date:</strong> 01 March, 2020</p>
-									<p><strong>Project URL:</strong> <a href="http://www.example.com"
-											target="_blank">www.example.com</a></p>
-								</div>
-							</div>
-							<!-- Project Details  -->
-							<div class="col-md-12 mt-0 pt-0">
-								<div class="project-detail">
-									<h3>This is an example of portfolio detail</h3>
-									<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum itaque molestiae
-										odio dicta
-										ullam magnam animi perferendis a. Exercitationem, natus. Quidem aut cumque
-										deleniti pariatur
-										delectus itaque numquam tempore quo?</p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</section>
-
-
-			</article>
-
-			<!-- Work -->
-			<article id="work" class="panel">
-				<header>
-					<h1 class="apple-font">Projects</h1>
-				</header>
-				<p>
-					Here's a list of some of my favourite projects!
-				</p>
-				<section>
-					<div class="row">
-
-						<!--Project 1-->
-						<div class="col-4 col-6-medium col-12-small ">
-							<a href="{{url_for ('project1')}}" class="image fit ">
-								<img src="/static/images/pic05.jpg" class="project-card" alt="">
-								<div class="project-name">Project Name</div>
-
-							</a>
-						</div>
-						<!--Project 2-->
-
-						<div class="col-4 col-6-medium col-12-small ">
-							<a href="{{url_for ('project2')}}" class="image fit">
-								<img src="/static/images/pic05.jpg" class="project-card" alt="">
-								<div class="project-name">Project Name</div>
-
-							</a>
-						</div>
-
-
-						<!--Project 3-->
-						<div class="col-4 col-6-medium col-12-small ">
-							<a href="{{url_for ('project3')}}" class="image fit">
-								<img src="/static/images/pic05.jpg" class="project-card" alt="">
-								<div class="project-name">Project Name</div>
-
-							</a>
-						</div>
-
-
-						<!--Project 4-->
-						<div class="col-4 col-6-medium col-12-small ">
-							<a href="{{url_for ('project4')}}" class="image fit">
-								<img src="/static/images/pic05.jpg" class="project-card" alt="">
-								<div class="project-name">Project Name</div>
-							</a>
-						</div>
-
-						<!--Project 5-->
-						<div class="col-4 col-6-medium col-12-small ">
-							<a href="{{url_for ('project5')}}" class="image fit">
-								<img src="/static/images/pic05.jpg" class="project-card" alt="">
-								<div class="project-name">Project Name</div>
-
-							</a>
-						</div>
-						<!--project 6-->
-						<div class="col-4 col-6-medium col-12-small ">
-							<a href="{{url_for ('project6')}}" class="image fit">
-								<img src="/static/images/pic05.jpg" class="project-card" alt="">
-								<div class="project-name">Project Name</div>
-							</a>
-						</div>
+{% block title %}Project 1 {% endblock %}
 
 
 
 
-					</div>
-				</section>
-			</article>
+{% block project_content %}
 
+<header>
+	<h2 class="apple-font">Project 1</h2>
+</header>
 
+<p>This is project 1</p>
+<section>
+	<div class="container">
+		<div class="row">
+			<!-- Image Column -->
+			<div class="col-md-6">
+				<div class="thumbnail-container">
+					<a href="https://youtu.be/DJnH0jR8y5Q" target="_blank">
+						<!--Youtube image-->
+						<img src="https://img.youtube.com/vi/DJnH0jR8y5Q/maxresdefault.jpg"
+							alt="YouTube Video Thumbnail" class="img-fluid youtube-thumbnails">
+						<!-- Youtube Thumbnail-->
+						<svg width="64px" height="64px" viewBox="0 -7 48 48" class="youtube-logo" version="1.1"
+							xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+							fill="#000000">
+							<g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+							<g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+							<g id="SVGRepo_iconCarrier">
+								<title>Youtube-color</title>
+								<desc>Created with Sketch.</desc>
+								<defs> </defs>
+								<g id="Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+									<g id="Color-" transform="translate(-200.000000, -368.000000)" fill="#FF0303">
+										<path
+											d="M219.044,391.269916 L219.0425,377.687742 L232.0115,384.502244 L219.044,391.269916 Z M247.52,375.334163 C247.52,375.334163 247.0505,372.003199 245.612,370.536366 C243.7865,368.610299 241.7405,368.601235 240.803,368.489448 C234.086,368 224.0105,368 224.0105,368 L223.9895,368 C223.9895,368 213.914,368 207.197,368.489448 C206.258,368.601235 204.2135,368.610299 202.3865,370.536366 C200.948,372.003199 200.48,375.334163 200.48,375.334163 C200.48,375.334163 200,379.246723 200,383.157773 L200,386.82561 C200,390.73817 200.48,394.64922 200.48,394.64922 C200.48,394.64922 200.948,397.980184 202.3865,399.447016 C204.2135,401.373084 206.612,401.312658 207.68,401.513574 C211.52,401.885191 224,402 224,402 C224,402 234.086,401.984894 240.803,401.495446 C241.7405,401.382148 243.7865,401.373084 245.612,399.447016 C247.0505,397.980184 247.52,394.64922 247.52,394.64922 C247.52,394.64922 248,390.73817 248,386.82561 L248,383.157773 C248,379.246723 247.52,375.334163 247.52,375.334163 L247.52,375.334163 Z"
+											id="Youtube"> </path>
+									</g>
+								</g>
+							</g>
+						</svg>
 
-
-			<!-- Contact -->
-			<article id="contact" class="panel">
-				<header>
-					{% if msg_sent: %}
-					<h1 class="message-sent">Successfuly sent message</h1>
-					{% else: %}
-					<h1 class="apple-font">Contact Me</h1>
-					{% endif %}
-
-				</header>
-				<form action="#contact" method="post">
-					<div>
-						<div class="row">
-							<div class="col-6 col-12-medium">
-								<input type="text" name="name" placeholder="Name" />
-							</div>
-							<div class="col-6 col-12-medium">
-								<input type="text" name="email" placeholder="Email" />
-							</div>
-							<div class="col-12">
-								<input type="text" name="subject" placeholder="Subject" />
-							</div>
-							<div class="col-12">
-								<textarea name="message" placeholder="Message" rows="6"></textarea>
-							</div>
-							<div class="col-12">
-								<input type="submit" class="btn btn-dark" value="Send Message" />
-							</div>
-						</div>
-					</div>
-				</form>
-			</article>
-
-			<!--Resume-->
-			<article id="about" class="panel">
-
-				<div class="d-flex">
-					<a href="{{ url_for('download') }}" class="btn btn-dark mb-3 ms-auto" download="CV.pdf"
-						target="_blank">
-						Download Resume <span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-								fill="currentColor" class="bi bi-arrow-down-circle-fill" viewBox="0 0 16 16">
-								<path
-									d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293z" />
-							</svg></span>
 					</a>
-
-
 				</div>
 
-				<h1 class="apple-font">About Me</h1>
-
-				<!-- Summary -->
-				<section class="summary-section">
-					<h2>Technologies</h2>
-					<ul class="contact-info">
-						<li>Python: Both for web development and data science</li>
-						<li>Objective-C</li>
-						<li>C</li>
-						<li>Java Script</li>
-					</ul>
-				</section>
-
-				<!-- Education -->
-				<section class="education-section">
-					<h3>Education</h3>
-					<ul class="list-group">
-						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-							class="bi bi-circle" viewBox="0 0 16 16">
-							<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
-						</svg>
-						<div class="job">
-							<li>
-								<h4 class="job-title">Bachelors in Computer Science</h4>
-							</li>
-						</div>
 
 
-						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-							class="bi bi-circle" viewBox="0 0 16 16">
-							<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
-						</svg>
-
-						<div class="job">
-							<li>
-								<h4 class="job-title">Certificate in Software Engineering</h4>
-							</li>
-						</div>
-					</ul>
-				</section>
-
-				<!-- Professional Experience -->
-				<section class="professional-experience">
-					<h3>Professional Experience</h3>
-					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-						class="bi bi-circle" viewBox="0 0 16 16">
-						<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
-					</svg>
-					<div class="job">
-						<h4 class="job-title">Care Coordinator</h4>
-						<p class="job-description">2022 - Present | Angel Care Group ltd, Oxfordshire, GB</p>
-						<ul>
-							<li>Developed systems for client analysis, auditing and work-flow for staff. Manage 12 team
-								leaders and
-								over 200 service users</li>
-							<li>Manage 12 team leaders and over 200 service users</li>
-							<li>Manage care-team rotas, assess incoming services users and make care plans</li>
-
-						</ul>
-					</div>
-					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-						class="bi bi-circle" viewBox="0 0 16 16">
-						<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
-					</svg>
-					<div class="job">
-						<h4 class="job-title">Cruiseship comedy club host and manager</h4>
-						<p class="job-description">2021 - 2022 | Carnival cruises, Miami, USA</p>
-						<ul>
-							<li>Managed over 50 comdians through scheduling, setting the stages annd lounges</li>
-							<li>Opened shows for comedians and ensured guest satisfaction in 2 lounges on board</li>
-						</ul>
-					</div>
-				</section>
-
-
-
-			</article>
-
-			<!-- Home -->
-			<article id="home" class="panel intro">
-				<header>
-					<h1 class="apple-font">Ashley Tanaka </h1>
-					<h3>Software Engineer</h3>
-				</header>
-				<a href="#work" class="jumplink pic">
-					<span class="arrow icon solid fa-chevron-right"><span>See my work</span></span>
-					<img src="/static/images/me.jpg" alt="" />
-				</a>
-			</article>
-
-
-
-
+			</div>
+			<!-- Text Column -->
+			<div class="col-md-6">
+				<!-- Project Information -->
+				<div class="project-info my-4">
+					<p><strong>Category:</strong> Web design</p>
+					<p><strong>Client:</strong> ASU Company</p>
+					<p><strong>Project date:</strong> 01 March, 2020</p>
+					<p><strong>Project URL:</strong> <a href="http://www.example.com"
+							target="_blank">www.example.com</a></p>
+				</div>
+			</div>
+			<!-- Project Details  -->
+			<div class="col-md-12 mt-0 pt-0">
+				<div class="project-detail">
+					<h3>This is an example of portfolio detail</h3>
+					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum itaque molestiae
+						odio dicta
+						ullam magnam animi perferendis a. Exercitationem, natus. Quidem aut cumque
+						deleniti pariatur
+						delectus itaque numquam tempore quo?</p>
+				</div>
+			</div>
 		</div>
-
-		<!-- Footer -->
-		<div id="footer">
-			<ul class="copyright">
-				<li>&copy; {{ current_year }} Ashley Tanaka Mushayanyama</li>
-			</ul>
-		</div>
-
 	</div>
+</section>
 
-	<!-- Scripts -->
-	<script src="/static/assets/js/jquery.min.js"></script>
-	<script src="/static/assets/js/browser.min.js"></script>
-	<script src="/static/assets//js/breakpoints.min.js"></script>
-	<script src="/static/assets/js/util.js"></script>
-	<script src="/static/assets/js/main.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-		crossorigin="anonymous"></script>
 
-</body>
 
-</html>
+
+
+{% endblock %}

@@ -37,9 +37,22 @@ def home():
 
 
 
-@app.route('/example', methods=['GET', 'POST'])
-def example():
-    return render_template('404.html')
+# @app.route('/example', methods=['GET', 'POST'])
+# def example():
+#     current_year = datetime.now().year
+#
+#     if request.method == "POST":
+#         data = request.form
+#
+#         name, email, subject, message = data['name'], data['email'], data['subject'], data['message']
+#
+#         print(f"{name, email, subject, message}")
+#
+#         send_confirmation_email(name=name, email=email, subject=subject)
+#         send_email(name=name, subject=subject, email=email, message=message)
+#         return render_template('project-1.html', current_year=current_year, msg_sent=True)
+#
+#     return render_template('example-template.html', current_year=current_year, msg_sent=False)
 
 
 

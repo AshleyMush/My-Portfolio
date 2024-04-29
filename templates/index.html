@@ -3,8 +3,8 @@
 <html>
 
 <head>
-	{% block styles %}
-	<title>Ashley's Portfolio'</title>
+	
+	<title>Ashley's website</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<link rel="stylesheet" href="/static/assets/css/main.css" />
@@ -18,7 +18,7 @@
 	<link rel="icon" type="image/png" href="{{ url_for('static', filename='assets/css/images/favicon1.png') }}">
 
 
-	{% endblock %}
+	
 
 </head> 
 </head>
@@ -32,11 +32,16 @@
 
 		<!-- Nav -->
 		<nav id="nav">
+
+			
+
 			<a href="#" class="icon solid fa-home"><span>Home</span></a>
 			<a href="#work" class="icon solid fa-folder"><span>My Work</span></a>
 			<a href="#contact" class="icon solid fa-envelope"><span>Contact</span></a>
 			<!--TODO ADD download  file here-->
 			<a href="#about" class="icon fa-solid fa-file"><span>About</span></a>
+
+			
 		</nav>
 
 		<!-- Main -->
@@ -56,14 +61,14 @@
 
 			<!-- Work -->
 			<article id="work" class="panel">
-				{% include 'base-all-projects.html' %}
+				{% include 'all-projects.html' %}
 
 			</article>
 
 			<!-- Contact -->
 			<article id="contact" class="panel">
 
-				{% include 'base-contact.html' %}
+				{% include 'contact-form-content.html' %}
 
 			</article>
 
@@ -71,7 +76,7 @@
 			<!--About-->
 			<article id="about" class="panel">
 
-				{% include 'base-about.html' %}
+				{% include 'about-content.html' %}
 
 
 
