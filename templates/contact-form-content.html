@@ -10,22 +10,30 @@
 
 
 				<form action="#contact" method="post">
+					{{ form.csrf_token }}
+
+
 					<div>
 						<div class="row">
 							<div class="col-6 col-12-medium">
-								<input type="text" name="name" placeholder="Name" />
+								{{ form.name.label }}
+								{{ form.name }}
 							</div>
 							<div class="col-6 col-12-medium">
-								<input type="text" name="email" placeholder="Email" />
+								{{ form.email.label }}
+								{{ form.email }}
 							</div>
 							<div class="col-12">
-								<input type="text" name="subject" placeholder="Subject" />
+								{{ form.subject.label }}
+								{{ form.subject }}
 							</div>
 							<div class="col-12">
-								<textarea name="message" placeholder="Message" rows="6"></textarea>
+								{{ form.message.label }}
+								{{ form.message }}
 							</div>
 							<div class="col-12">
-								<input type="submit" class="btn btn-dark" value="Send Message" />
+								{{ form.submit }}
+
 							</div>
 						</div>
 					</div>

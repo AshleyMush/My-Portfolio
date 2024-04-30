@@ -6,6 +6,7 @@ import smtplib
 from email.mime.text import MIMEText
 import smtplib
 import os
+from forms import ContactForm
 
 MY_EMAIL_ADDRESS = os.environ.get("EMAIL_KEY")
 MY_EMAIL_APP_PASSWORD = os.environ.get("PASSWORD_KEY")
@@ -20,10 +21,11 @@ Bootstrap5(app)
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
+    form = ContactForm()
     current_year = datetime.now().year
 
-    if request.method == "POST":
-        data = request.form
+    if form.validate_on_submit() and form.data:
+        data = form.data
 
         name, email, subject, message = data['name'], data['email'], data['subject'], data['message']
 
@@ -31,9 +33,16 @@ def home():
 
         send_confirmation_email(name=name, email=email, subject=subject)
         send_email(name=name, subject=subject, email=email, message=message)
-        return render_template('index.html', current_year=current_year, msg_sent=True)
 
-    return render_template('index.html', current_year=current_year, msg_sent=False)
+        return render_template('index.html', current_year=current_year, msg_sent=True, form=form)
+
+
+
+
+        
+
+
+    return render_template('index.html', current_year=current_year, msg_sent=False, form=form)
 
 
 
