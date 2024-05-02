@@ -16,23 +16,19 @@
 					<div>
 						<div class="row">
 							<div class="col-6 col-12-medium">
-								{{ form.name.label }}
-								{{ form.name }}
+								{{ form.name()}}
 							</div>
 							<div class="col-6 col-12-medium">
-								{{ form.email.label }}
-								{{ form.email }}
+								{{ form.email() }}
 							</div>
 							<div class="col-12">
-								{{ form.subject.label }}
-								{{ form.subject }}
+								{{ form.subject() }}
 							</div>
 							<div class="col-12">
-								{{ form.message.label }}
-								{{ form.message }}
+								{{ form.message()}}
 							</div>
 							<div class="col-12">
-								{{ form.submit }}
+								{{ form.submit() }}
 
 							</div>
 						</div>

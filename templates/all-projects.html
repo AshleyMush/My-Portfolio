@@ -1,73 +1,79 @@
+<header>
+	<h1 class="apple-font">Projects</h1>
+</header>
+<p>
+	Here's a list of some of my favourite projects!
+</p>
+<section>
+	<div class="row">
 
-				<header>
-					<h1 class="apple-font">Projects</h1>
-				</header>
-				<p>
-					Here's a list of some of my favourite projects!
-				</p>
-				<section>
-					<div class="row">
+		{% if request.endpoint != 'project1' %}
+		<div class="col-4 col-6-medium col-12-small ">
+			<a href="{{url_for ('project1')}}" class="image fit ">
+				<img src="/static/images/audit.jpg" class="project-card" alt="">
+				<div class="project-name">Automated Care Notes Auditor</div>
+			</a>
+		</div>
+		{% endif %}
+		<!--Project 2-->
 
-						<!--Project 1-->
-						<div class="col-4 col-6-medium col-12-small ">
-							<a href="{{url_for ('project1')}}" class="image fit ">
-								<img src="/static/images/pic05.jpg" class="project-card" alt="">
-								<div class="project-name">Project Name</div>
+		{% if request.endpoint != 'project2' %}
 
-							</a>
-						</div>
-						<!--Project 2-->
+		<div class="col-4 col-6-medium col-12-small ">
+			<a href="{{url_for ('project2')}}" class="image fit">
+				<img src="/static/images/website.jpg" class="project-card" alt="">
+				<div class="project-name">Care Company Website</div>
 
-						<div class="col-4 col-6-medium col-12-small ">
-							<a href="{{url_for ('project2')}}" class="image fit">
-								<img src="/static/images/pic05.jpg" class="project-card" alt="">
-								<div class="project-name">Project Name</div>
-
-							</a>
-						</div>
-
-
-						<!--Project 3-->
-						<div class="col-4 col-6-medium col-12-small ">
-							<a href="{{url_for ('project3')}}" class="image fit">
-								<img src="/static/images/pic05.jpg" class="project-card" alt="">
-								<div class="project-name">Project Name</div>
-
-							</a>
-						</div>
+			</a>
+		</div>
+		{% endif %}
 
 
-						<!--Project 4-->
-						<div class="col-4 col-6-medium col-12-small ">
-							<a href="{{url_for ('project4')}}" class="image fit">
-								<img src="/static/images/pic05.jpg" class="project-card" alt="">
-								<div class="project-name">Project Name</div>
-							</a>
-						</div>
+		<!--Project 3-->
+		{% if request.endpoint != 'project3' %}
+		<div class="col-4 col-6-medium col-12-small ">
+			<a href="{{url_for ('project3')}}" class="image fit">
+				<img src="/static/images/pic05.jpg" class="project-card" alt="">
+				<div class="project-name">Project 3</div>
 
-						<!--Project 5-->
-						<div class="col-4 col-6-medium col-12-small ">
-							<a href="{{url_for ('project5')}}" class="image fit">
-								<img src="/static/images/pic05.jpg" class="project-card" alt="">
-								<div class="project-name">Project Name</div>
-
-							</a>
-						</div>
-						<!--project 6-->
-						<div class="col-4 col-6-medium col-12-small ">
-							<a href="{{url_for ('project6')}}" class="image fit">
-								<img src="/static/images/pic05.jpg" class="project-card" alt="">
-								<div class="project-name">Project Name</div>
-							</a>
-						</div>
+			</a>
+		</div>
+		{% endif %}
 
 
+		<!--Project 4-->
+		{% if request.endpoint != 'project4' %}
+		<div class="col-4 col-6-medium col-12-small ">
+			<a href="{{url_for ('project4')}}" class="image fit">
+				<img src="/static/images/pic05.jpg" class="project-card" alt="">
+				<div class="project-name">Project 4</div>
+			</a>
+		</div>
+		{% endif %}
+
+		<!--Project 5-->
+		{% if request.endpoint != 'project5' %}
+		<div class="col-4 col-6-medium col-12-small ">
+			<a href="{{url_for ('project5')}}" class="image fit">
+				<img src="/static/images/pic05.jpg" class="project-card" alt="">
+				<div class="project-name">Project 5</div>
+
+			</a>
+		</div>
+		{% endif %}
+
+		<!--project 6-->
+		{% if request.endpoint != 'project6' %}
+		<div class="col-4 col-6-medium col-12-small ">
+			<a href="{{url_for ('project6')}}" class="image fit">
+				<img src="/static/images/pic05.jpg" class="project-card" alt="">
+				<div class="project-name">Project 6</div>
+			</a>
+		</div>
+		{% endif %}
 
 
-					</div>
-				</section>
 
 
-
-
-
+	</div>
+</section>
