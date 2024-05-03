@@ -8,6 +8,8 @@ import smtplib
 import os
 from forms import ContactForm
 
+
+
 MY_EMAIL_ADDRESS = os.environ.get("EMAIL_KEY")
 MY_EMAIL_APP_PASSWORD = os.environ.get("PASSWORD_KEY")
 
@@ -15,6 +17,12 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ.get("SECRET_APP_KEY")
 ckeditor = CKEditor(app)
 Bootstrap5(app)
+
+
+
+# -----------------Configure DB-------------------------
+app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///projects.db"
+db.init_app(app)
 
 
 

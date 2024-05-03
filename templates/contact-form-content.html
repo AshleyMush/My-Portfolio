@@ -1,4 +1,5 @@
-				<header>
+
+<header>
 					{% if msg_sent: %}
 					<h1 class="message-sent">Successfuly sent message</h1>
 					{% else: %}
@@ -12,7 +13,6 @@
 				<form action="#contact" method="post">
 					{{ form.csrf_token }}
 
-
 					<div>
 						<div class="row">
 							<div class="col-6 col-12-medium">
@@ -20,6 +20,13 @@
 							</div>
 							<div class="col-6 col-12-medium">
 								{{ form.email() }}
+
+{% if form.email.errors %}
+<ul class="errors">
+    {% for error in form.email.errors %}
+    <li>{{ error }}</li>
+    {% endfor %}
+{% endif %}
 							</div>
 							<div class="col-12">
 								{{ form.subject() }}
