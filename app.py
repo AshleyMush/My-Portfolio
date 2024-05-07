@@ -7,7 +7,8 @@ from email.mime.text import MIMEText
 import smtplib
 import os
 from forms import ContactForm, LoginForm
-from models import db
+from models import db, User
+
 
 
 
@@ -24,6 +25,9 @@ Bootstrap5(app)
 # -----------------Configure DB-------------------------
 app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///Portfolio.db"
 db.init_app(app)
+
+# with app.app_context():
+#     db.create_all()
 
 
 
