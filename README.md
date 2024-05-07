@@ -28,7 +28,15 @@ To run the project, use the following command:
 python app.py
 
 ⛔TODOs
-Template Rendering and Database Integration: The current project structure uses static HTML files for each project. The goal is to transition to dynamic template rendering using Flask's Jinja2 template engine. The project data will be stored in a SQLite database (Portfolio.db), and Flask-SQLAlchemy will be used to fetch and display this data on the website.  
+Template Rendering and Database Integration: 
+![image](https://github.com/AshleyMush/My-Portfolio/assets/49234738/4456f7e7-8296-4a07-8b9f-ed78d4a30c6d)
+
+
+The current project structure uses static HTML files for each project. The goal is to transition to dynamic template rendering using Flask's Jinja2 template engine. The project data will be stored in a SQLite database (Portfolio.db), and Flask-SQLAlchemy will be used to fetch and display this data on the website. 
+
+
+
+
 User Authentication: The website currently includes a basic login form. The goal is to add backend functionality for user authentication. This will involve handling the form submission, verifying the user credentials, and managing user sessions.  
 Form Styling: The forms on the website are currently rendered using Flask-Bootstrap's render_form function. The goal is to transition to manual form rendering, which will provide more control over the form layout and styling. Bootstrap will be used to style the forms. 
 
