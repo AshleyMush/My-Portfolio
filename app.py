@@ -6,7 +6,7 @@ import smtplib
 from email.mime.text import MIMEText
 import smtplib
 import os
-from forms import ContactForm
+from forms import ContactForm, LoginForm
 from models import db
 
 
@@ -22,27 +22,28 @@ Bootstrap5(app)
 
 
 # -----------------Configure DB-------------------------
-app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///projects.db"
+app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///Portfolio.db"
 db.init_app(app)
 
 
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
-    form = ContactForm()
+    contact_form = ContactForm()
+    login_form = LoginForm()
     current_year = datetime.now().year
 
-    if form.validate_on_submit() and form.data:
-        name, email, subject, message = form.name.data, form.email.data, form.subject.data, form.message.data
+    if contact_form.validate_on_submit() and contact_form.data:
+        name, email, subject, message = contact_form.name.data, contact_form.email.data, contact_form.subject.data, contact_form.message.data
 
         print(f"{name, email, subject, message}")
 
         send_confirmation_email(name=name, email=email, subject=subject)
         send_email(name=name, subject=subject, email=email, message=message)
 
-        return render_template('index.html', current_year=current_year, msg_sent=True, form=form)
+        return render_template('index.html', current_year=current_year, msg_sent=True, form=contact_form)
 
-    return render_template('index.html', current_year=current_year, msg_sent=False, form=form)
+    return render_template('index.html', current_year=current_year, msg_sent=False, login =False, form=contact_form, login_form=login_form)
 
 
 # @app.route('/example', methods=['GET', 'POST'])
