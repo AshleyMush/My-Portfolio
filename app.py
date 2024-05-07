@@ -7,6 +7,7 @@ from email.mime.text import MIMEText
 import smtplib
 import os
 from forms import ContactForm
+from models import db
 
 
 
