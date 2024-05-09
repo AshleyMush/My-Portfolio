@@ -7,7 +7,7 @@ from email.mime.text import MIMEText
 import smtplib
 import os
 from forms import ContactForm, LoginForm
-from models import db, User
+from models import db, Projects
 
 
 
@@ -23,11 +23,11 @@ Bootstrap5(app)
 
 
 # -----------------Configure DB-------------------------
-app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///Portfolio.db"
+app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///Projects.db"
 db.init_app(app)
 
-# with app.app_context():
-#     db.create_all()
+with app.app_context():
+    db.create_all()
 
 
 
@@ -49,23 +49,40 @@ def home():
 
     return render_template('index.html', current_year=current_year, msg_sent=False, login =False, form=contact_form, login_form=login_form)
 
+# Todo: Create instance of db and  pasrse  projects to projects.html
+@app.route('/projects', methods=['GET', 'POST'])
+def all_projects():
+    return render_template('projects.html')
 
-# @app.route('/example', methods=['GET', 'POST'])
-# def example():
-#     current_year = datetime.now().year
-#
-#     if request.method == "POST":
-#         data = request.form
-#
-#         name, email, subject, message = data['name'], data['email'], data['subject'], data['message']
-#
-#         print(f"{name, email, subject, message}")
-#
-#         send_confirmation_email(name=name, email=email, subject=subject)
-#         send_email(name=name, subject=subject, email=email, message=message)
-#         return render_template('project-1.html', current_year=current_year, msg_sent=True)
-#
-#     return render_template('example-template.html', current_year=current_year, msg_sent=False)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 @app.route('/project-1', methods=['GET', 'POST'])

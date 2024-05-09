@@ -8,9 +8,14 @@ from flask_login import UserMixin
 
 db = SQLAlchemy()
 
-class User(db.Model):
-    __tablename__ = "users"
+
+class Projects(db.Model):
+    __tablename__ = "projects"
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(250), unique=True, nullable=False)
-    email = db.Column(db.String(250), unique=True, nullable= False)
-    password = db.Column(db.String(250), nullable=False)
+    name = db.Column(db.String(250), unique=True, nullable=True)
+    img_url = db.Column(db.String(250), unique=True, nullable= True)
+    video_url = db.Column(db.String(250), unique=True, nullable= True)
+    category = db.Column(db.String(250), nullable=True)
+    tech_used = db.Column(db.String(250), nullable=True)
+    project_url = db.Column(db.String(250), nullable=True, unique=True)
+    description = db.Column(db.String(250), nullable=True)
