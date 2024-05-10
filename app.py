@@ -36,6 +36,7 @@ def home():
     contact_form = ContactForm()
     login_form = LoginForm()
     current_year = datetime.now().year
+    projects = Projects.query.all()
 
     if contact_form.validate_on_submit() and contact_form.data:
         name, email, subject, message = contact_form.name.data, contact_form.email.data, contact_form.subject.data, contact_form.message.data
@@ -47,15 +48,35 @@ def home():
 
         return render_template('index.html', current_year=current_year, msg_sent=True, form=contact_form)
 
-    return render_template('index.html', current_year=current_year, msg_sent=False, login =False, form=contact_form, login_form=login_form)
+    return render_template('index.html', current_year=current_year, msg_sent=False, login =False, form=contact_form, login_form=login_form, projects=projects)
 
 # Todo: Create instance of db and  pasrse  projects to projects.html
 @app.route('/projects', methods=['GET', 'POST'])
 def all_projects():
-    return render_template('projects.html')
+    projects = Projects.query.all()
 
 
 
+    return render_template('all-projects.html', projects=projects)
+
+
+@app.route('/add', methods=['GET', 'POST'])
+def add_project():
+    #Todo: Add form to add project and parse to db
+
+    new_project = Projects(
+        name="Care Company Website",
+        homepage_thumbnail="https://img.freepik.com/free-vector/business-background-design_1212-571.jpg?t=st=1715321458~exp=1715325058~hmac=2bbe4476d01f5a5de105529630423077013eb25cee1f6363acc4f125613d28ae&w=740",
+        img_url="https://img.youtube.com/vi/DJnH0jR8y5Q/maxresdefault.jpg",
+        video_url="https://youtu.be/DJnH0jR8y5Q",
+        category="Full Stack Web App",
+        tech_used="Python, flask with flask_wtf, boostrap, gunicord,  twilio API, SMTP lib, HHTP Requests",
+        project_url="https://github.com",
+        description="A project that does something")
+
+    db.session.add(new_project)
+    db.session.commit()
+    return redirect(url_for('all_projects'))
 
 
 
