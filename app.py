@@ -82,7 +82,33 @@ def add_project():
 
 
 
+@app.route('/project/<int:id>', methods=['GET', 'POST'])
+def project(id):
+    form = ContactForm()
+    current_year = datetime.now().year
 
+    project = Projects.query.get(id)
+
+    if project is None:
+        abort(404, description="Project not found")
+
+    else:
+        form = ContactForm()
+        current_year = datetime.now().year
+
+        if form.validate_on_submit() and form.data:
+            name, email, subject, message = form.name.data, form.email.data, form.subject.data, form.message.data
+
+            print(f"{name, email, subject, message}")
+
+            send_confirmation_email(name=name, email=email, subject=subject)
+            send_email(name=name, subject=subject, email=email, message=message)
+
+            return render_template('base-project.html', current_year=current_year, msg_sent=True, form=form, project=project)
+
+        return render_template('base-project.html', current_year=current_year, msg_sent=False, form=form, project=project)
+
+    return redirect(url_for('home'))
 
 
 

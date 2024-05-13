@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}Project 6 {% endblock %}
+{% block title %}{{project.name}}{% endblock %}
 
 
 
@@ -8,10 +8,10 @@
 {% block project_content %}
 
 <header>
-	<h2 class="apple-font">Project 1</h2>
+	<h2 class="apple-font">Project:</h2>
 </header>
-<!-- TODO: Add Project Name -->
-<p>This is project 6</p>
+<!-- Project Name -->
+<p>{{project.name}}</p>
 <section>
 	<div class="container">
 		<div class="row">
@@ -19,11 +19,11 @@
 			<div class="col-md-6">
 				<div class="thumbnail-container">
 
-                  <!--TODO: Add Youtube Url-->
-					<a href="https://youtu.be/DJnH0jR8y5Q" target="_blank">
+                  <!--Video Url-->
+					<a href="{{project.img_url}}" target="_blank">
 
-                      <!--TODO:  Youtube Thumbnail/ img url-->
-						<img src="https://img.youtube.com/vi/DJnH0jR8y5Q/maxresdefault.jpg"
+                      <!-- Youtube Thumbnail/ img url-->
+						<img src="{{ project.img_url }}"
 							alt="YouTube Video Thumbnail" class="img-fluid youtube-thumbnails">
 
 						<svg width="64px" height="64px" viewBox="0 -7 48 48" class="youtube-logo" version="1.1"
@@ -54,29 +54,25 @@
 				<!-- Project Information -->
 				<div class="project-info my-4">
 
-                  <!--TODO:  add category-->
-					<p><strong>Category:</strong> Web design</p>
+                  <!-- category-->
+					<p><strong>Category:</strong> {{project.category}}</p>
 
-                   <!--TODO:  add technologies-->
-					<p><strong>Technologies:</strong> ASU Company</p>
+                   <!--technologies-->
+					<p><strong>Technologies:</strong> {{project.tech_used}}</p>
 
                    <!--TODO:  add project url-->
-					<p><strong>Project URL:</strong> <a href="http://www.example.com"
-							target="_blank">www.example.com</a></p>
+					<p><strong>Project URL:</strong> <a href="{{project.project_url}}"
+							target="_blank">{{project.project_url}}</a></p>
 				</div>
 			</div>
 			<!-- Project Details  -->
 			<div class="col-md-12 mt-0 pt-0">
 				<div class="project-detail">
 
-					<h3>This is an example of portfolio detail</h3>
+					<h3>Details</h3>
 
                   <!--TODO:  Add Project Description -->
-					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum itaque molestiae
-						odio dicta
-						ullam magnam animi perferendis a. Exercitationem, natus. Quidem aut cumque
-						deleniti pariatur
-						delectus itaque numquam tempore quo?</p>
+					<p>{{project.description}}</p>
 				</div>
 			</div>
 		</div>
