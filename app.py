@@ -64,17 +64,27 @@ def all_projects():
 def add_project():
     #Todo: Add form to add project and parse to db
 
-    new_project = Projects(
-        name="Care Company Website",
-        homepage_thumbnail="https://img.freepik.com/free-vector/business-background-design_1212-571.jpg?t=st=1715321458~exp=1715325058~hmac=2bbe4476d01f5a5de105529630423077013eb25cee1f6363acc4f125613d28ae&w=740",
+    project1 = Projects(
+        name=" Care Notes internal Audit tool.",
+        homepage_thumbnail="https://img.freepik.com/free-vector/data-center-technology_24908-59337.jpg?t=st=1715633565~exp=1715637165~hmac=ea690113904429b4413e9cad42130c421d9b7ebf5f81d46267cc2f5a36f96fdb&w=740",
+        img_url="https://img.youtube.com/vi/DJnH0jR8y5Q/maxresdefault.jpg",
+        video_url="https://youtu.be/p9Q5a1Vn-Hk?si=-CtWc6FdrMhHRvU0",
+        category="Python Desktop Application",
+        tech_used="Python, pandas, numpy, Tkinter, selenium, OS lib",
+    project_url="https://github.com/project1",
+        description="A project that does something")
+
+    project2 = Projects(
+        name="Health Care Website",
+        homepage_thumbnail="https://img.freepik.com/free-vector/online-purchases-from-home-3d-concepts-landing-page_52683-32652.jpg?t=st=1715634278~exp=1715637878~hmac=994cd8869d1729072d2b6f1a977ffb5f7253dce9d8f77da9b99fa48d1031d54a&w=1380",
         img_url="https://img.youtube.com/vi/DJnH0jR8y5Q/maxresdefault.jpg",
         video_url="https://youtu.be/DJnH0jR8y5Q",
         category="Full Stack Web App",
         tech_used="Python, flask with flask_wtf, boostrap, gunicord,  twilio API, SMTP lib, HHTP Requests",
-        project_url="https://github.com",
+        project_url="https://github.com/project2",
         description="A project that does something")
 
-    db.session.add(new_project)
+    db.session.add_all([project1, project2])
     db.session.commit()
     return redirect(url_for('all_projects'))
 
