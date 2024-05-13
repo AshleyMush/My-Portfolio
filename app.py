@@ -86,6 +86,7 @@ def add_project():
 def project(id):
     form = ContactForm()
     current_year = datetime.now().year
+    projects = Projects.query.all()
 
     project = Projects.query.get(id)
 
@@ -104,9 +105,9 @@ def project(id):
             send_confirmation_email(name=name, email=email, subject=subject)
             send_email(name=name, subject=subject, email=email, message=message)
 
-            return render_template('base-project.html', current_year=current_year, msg_sent=True, form=form, project=project)
+            return render_template('base-project.html', current_year=current_year, msg_sent=True, form=form, project=project, projects=projects)
 
-        return render_template('base-project.html', current_year=current_year, msg_sent=False, form=form, project=project)
+        return render_template('base-project.html', current_year=current_year, msg_sent=False, form=form, project=project, projects = projects)
 
     return redirect(url_for('home'))
 
