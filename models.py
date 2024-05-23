@@ -20,3 +20,18 @@ class Projects(db.Model):
     tech_used = db.Column(db.String(250), nullable=True)
     project_url = db.Column(db.String(250), nullable=True, unique=True)
     description = db.Column(db.String(250), nullable=True)
+
+    # Helper function to convert model instances to dictionaries
+    def to_dict(self):
+        # Method 1.
+        dictionary = {}
+        # # Loop through each column in the data record
+        # for column in self.__table__.columns:
+        #     # Create a new dictionary entry;
+        #     # where the key is the name of the column
+        #     # and the value is the value of the column
+        #     dictionary[column.name] = getattr(self, column.name)
+        # return dictionary
+
+        # Method 2. Altenatively use Dictionary Comprehension to do the same thing.
+        return {column.name: getattr(self, column.name) for column in self.__table__.columns}

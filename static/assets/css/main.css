@@ -1505,6 +1505,11 @@ ul.list-group li {
 	border-radius: 10%;
 	box-shadow: 6px 6px 12px #acacac,
 			-6px -6px 12px #ffffff;
+			/*height: 30vh;*/
+
+	width: 100%;
+    height: 100%; /* Adjust as needed */
+    object-fit: cover; /* Ensures the image covers the entire space of the card */
 			
 	
 }

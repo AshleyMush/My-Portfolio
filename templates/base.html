@@ -42,6 +42,8 @@
 			<a href="#contact" class="icon solid fa-envelope"><span>Contact</span></a>
 			<a href="#about" class="icon fa-solid fa-file"><span>About</span></a>
 			<a href="{{url_for('home')}}" class="icon solid fa-home"><span>Home</span></a>
+			<a href="#login" class="icon fa-solid fa-user"><span>About</span></a>
+
 
 
 
@@ -97,6 +99,14 @@
 					<span class="arrow icon solid fa-chevron-right"><span>See my work</span></span>
 					<img src="/static/images/me.jpg" alt="" />
 				</a>
+
+				<!--login -->
+			</article>
+
+						<article id="login" class="panel">
+
+				{% include 'login-form.html' %}
+
 			</article>
 
 

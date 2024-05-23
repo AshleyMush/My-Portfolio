@@ -10,6 +10,9 @@ from forms import ContactForm, LoginForm
 from models import db, Projects
 
 
+from api import api_app
+
+
 
 
 MY_EMAIL_ADDRESS = os.environ.get("EMAIL_KEY")
@@ -28,6 +31,10 @@ db.init_app(app)
 
 with app.app_context():
     db.create_all()
+
+
+# Register the API blueprint
+app.register_blueprint(api_app, url_prefix='/api')
 
 
 
@@ -60,6 +67,9 @@ def all_projects():
     return render_template('all-projects.html', projects=projects)
 
 
+
+#HTTP- Create
+
 @app.route('/add', methods=['GET', 'POST'])
 def add_project():
     #Todo: Add form to add project and parse to db
@@ -91,9 +101,10 @@ def add_project():
 
 
 
-
+# HTTP- Get
 @app.route('/project/<int:id>', methods=['GET', 'POST'])
 def project(id):
+    login_form = LoginForm()
     form = ContactForm()
     current_year = datetime.now().year
     projects = Projects.query.all()
@@ -115,9 +126,9 @@ def project(id):
             send_confirmation_email(name=name, email=email, subject=subject)
             send_email(name=name, subject=subject, email=email, message=message)
 
-            return render_template('base-project.html', current_year=current_year, msg_sent=True, form=form, project=project, projects=projects)
+            return render_template('base-project.html', current_year=current_year, msg_sent=True, form=form, project=project, projects=projects, login_form=login_form)
 
-        return render_template('base-project.html', current_year=current_year, msg_sent=False, form=form, project=project, projects = projects)
+        return render_template('base-project.html', current_year=current_year, msg_sent=False, form=form, project=project, projects = projects, login_form=login_form)
 
     return redirect(url_for('home'))
 
@@ -142,116 +153,6 @@ def project(id):
 
 
 
-
-@app.route('/project-1', methods=['GET', 'POST'])
-def project1():
-
-    form = ContactForm()
-    current_year = datetime.now().year
-
-    if form.validate_on_submit() and form.data:
-        name, email, subject, message = form.name.data, form.email.data, form.subject.data, form.message.data
-
-        print(f"{name, email, subject, message}")
-
-        send_confirmation_email(name=name, email=email, subject=subject)
-        send_email(name=name, subject=subject, email=email, message=message)
-
-        return render_template('project-1.html', current_year=current_year, msg_sent=True, form=form)
-
-    return render_template('project-1.html', current_year=current_year, msg_sent=False, form=form)
-
-
-@app.route('/project-2', methods=['GET', 'POST'])
-def project2():
-    form = ContactForm()
-    current_year = datetime.now().year
-
-    if form.validate_on_submit() and form.data:
-        name, email, subject, message = form.name.data, form.email.data, form.subject.data, form.message.data
-
-        print(f"{name, email, subject, message}")
-
-        send_confirmation_email(name=name, email=email, subject=subject)
-        send_email(name=name, subject=subject, email=email, message=message)
-
-        return render_template('project-2.html', current_year=current_year, msg_sent=True, form=form)
-
-    return render_template('project-2.html', current_year=current_year, msg_sent=False, form=form)
-
-
-@app.route('/project-3', methods=['GET', 'POST'])
-def project3():
-    form = ContactForm()
-    current_year = datetime.now().year
-
-    if form.validate_on_submit() and form.data:
-        name, email, subject, message = form.name.data, form.email.data, form.subject.data, form.message.data
-
-        print(f"{name, email, subject, message}")
-
-        send_confirmation_email(name=name, email=email, subject=subject)
-        send_email(name=name, subject=subject, email=email, message=message)
-
-        return render_template('project-3.html', current_year=current_year, msg_sent=True, form=form)
-
-    return render_template('project-3.html', current_year=current_year, msg_sent=False, form=form)
-
-
-@app.route('/project-4', methods=['GET', 'POST'])
-def project4():
-    form = ContactForm()
-    current_year = datetime.now().year
-
-    if form.validate_on_submit() and form.data:
-        name, email, subject, message = form.name.data, form.email.data, form.subject.data, form.message.data
-
-        print(f"{name, email, subject, message}")
-
-        send_confirmation_email(name=name, email=email, subject=subject)
-        send_email(name=name, subject=subject, email=email, message=message)
-
-        return render_template('project-4.html', current_year=current_year, msg_sent=True, form=form)
-
-    return render_template('project-4.html', current_year=current_year, msg_sent=False, form=form)
-
-
-@app.route('/project-5', methods=['GET', 'POST'])
-def project5():
-    form = ContactForm()
-    current_year = datetime.now().year
-
-    if form.validate_on_submit() and form.data:
-        name, email, subject, message = form.name.data, form.email.data, form.subject.data, form.message.data
-
-        print(f"{name, email, subject, message}")
-
-        send_confirmation_email(name=name, email=email, subject=subject)
-        send_email(name=name, subject=subject, email=email, message=message)
-
-        return render_template('project-5.html', current_year=current_year, msg_sent=True, form=form)
-
-    return render_template('project-5.html', current_year=current_year, msg_sent=False, form=form)
-
-
-@app.route('/project-6', methods=['GET', 'POST'])
-def project6():
-    form = ContactForm()
-    current_year = datetime.now().year
-
-    if form.validate_on_submit() and form.data:
-        name, email, subject, message = form.name.data, form.email.data, form.subject.data, form.message.data
-
-        print(f"{name, email, subject, message}")
-
-        send_confirmation_email(name=name, email=email, subject=subject)
-        send_email(name=name, subject=subject, email=email, message=message)
-
-        return render_template('project-6.html', current_year=current_year, msg_sent=True, form=form)
-
-    return render_template('project-6.html', current_year=current_year, msg_sent=False, form=form)
-
-    return render_template('project-6.html', current_year=current_year, msg_sent=False)
 
 
 @app.route('/download', methods=['GET', 'POST'])
