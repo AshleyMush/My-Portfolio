@@ -8,12 +8,8 @@ import smtplib
 import os
 from forms import ContactForm, LoginForm
 from models import db, Projects
-
-
 from api import api_app
-
-
-
+import requests
 
 MY_EMAIL_ADDRESS = os.environ.get("EMAIL_KEY")
 MY_EMAIL_APP_PASSWORD = os.environ.get("PASSWORD_KEY")
@@ -23,8 +19,6 @@ app.config['SECRET_KEY'] = os.environ.get("SECRET_APP_KEY")
 ckeditor = CKEditor(app)
 Bootstrap5(app)
 
-
-
 # -----------------Configure DB-------------------------
 app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///Projects.db"
 db.init_app(app)
@@ -32,10 +26,19 @@ db.init_app(app)
 with app.app_context():
     db.create_all()
 
-
-# Register the API blueprint
+# Register the API blueprint in app
 app.register_blueprint(api_app, url_prefix='/api')
 
+
+def all_projects_list():
+    """
+
+    :return: value of projects which is a list of dictionaries containing projects
+    """
+    response = requests.get(url="http://127.0.0.1:5002/api/all")
+    data = response.json()
+
+    return data['projects']
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -43,7 +46,9 @@ def home():
     contact_form = ContactForm()
     login_form = LoginForm()
     current_year = datetime.now().year
-    projects = Projects.query.all()
+
+    list_of_projects = all_projects_list()
+
 
     if contact_form.validate_on_submit() and contact_form.data:
         name, email, subject, message = contact_form.name.data, contact_form.email.data, contact_form.subject.data, contact_form.message.data
@@ -55,104 +60,66 @@ def home():
 
         return render_template('index.html', current_year=current_year, msg_sent=True, form=contact_form)
 
-    return render_template('index.html', current_year=current_year, msg_sent=False, login =False, form=contact_form, login_form=login_form, projects=projects)
+    return render_template('index.html', projects=list_of_projects, current_year=current_year, msg_sent=False,
+                           login=False, form=contact_form, login_form=login_form, )
+
 
 # Todo: Create instance of db and  pasrse  projects to projects.html
 @app.route('/projects', methods=['GET', 'POST'])
 def all_projects():
-    projects = Projects.query.all()
+    # Call the API endpoint
+    response = requests.get(url="http://127.0.0.1:5002/api/all")
+    data = response.json()
+    list_of_projects = data['projects']
+
+    return render_template('all-projects.html', projects=list_of_projects)
 
 
-
-    return render_template('all-projects.html', projects=projects)
-
-
-
-#HTTP- Create
-
+# HTTP- Create item
+# Todo: Add form to add project and parse to db
 @app.route('/add', methods=['GET', 'POST'])
 def add_project():
-    #Todo: Add form to add project and parse to db
 
-    project1 = Projects(
-        name=" Care Notes internal Audit tool.",
-        homepage_thumbnail="https://img.freepik.com/free-vector/data-center-technology_24908-59337.jpg?t=st=1715633565~exp=1715637165~hmac=ea690113904429b4413e9cad42130c421d9b7ebf5f81d46267cc2f5a36f96fdb&w=740",
-        img_url="https://img.youtube.com/vi/DJnH0jR8y5Q/maxresdefault.jpg",
-        video_url="https://youtu.be/p9Q5a1Vn-Hk?si=-CtWc6FdrMhHRvU0",
-        category="Python Desktop Application",
-        tech_used="Python, pandas, numpy, Tkinter, selenium, OS lib",
-    project_url="https://github.com/project1",
-        description="A project that does something")
 
-    project2 = Projects(
-        name="Health Care Website",
-        homepage_thumbnail="https://img.freepik.com/free-vector/online-purchases-from-home-3d-concepts-landing-page_52683-32652.jpg?t=st=1715634278~exp=1715637878~hmac=994cd8869d1729072d2b6f1a977ffb5f7253dce9d8f77da9b99fa48d1031d54a&w=1380",
-        img_url="https://img.youtube.com/vi/DJnH0jR8y5Q/maxresdefault.jpg",
-        video_url="https://youtu.be/DJnH0jR8y5Q",
-        category="Full Stack Web App",
-        tech_used="Python, flask with flask_wtf, boostrap, gunicord,  twilio API, SMTP lib, HHTP Requests",
-        project_url="https://github.com/project2",
-        description="A project that does something")
+    # Todo: request post for json data
 
-    db.session.add_all([project1, project2])
-    db.session.commit()
+
     return redirect(url_for('all_projects'))
 
 
 
 
-# HTTP- Get
-@app.route('/project/<int:id>', methods=['GET', 'POST'])
-def project(id):
+
+# HTTP -Get a specific item
+@app.route('/<int:id>', methods=['GET'])
+def get_project(id):
     login_form = LoginForm()
     form = ContactForm()
     current_year = datetime.now().year
-    projects = Projects.query.all()
 
-    project = Projects.query.get(id)
+    list_of_projects = all_projects_list()
 
-    if project is None:
-        abort(404, description="Project not found")
 
-    else:
-        form = ContactForm()
-        current_year = datetime.now().year
-
-        if form.validate_on_submit() and form.data:
-            name, email, subject, message = form.name.data, form.email.data, form.subject.data, form.message.data
-
-            print(f"{name, email, subject, message}")
-
-            send_confirmation_email(name=name, email=email, subject=subject)
-            send_email(name=name, subject=subject, email=email, message=message)
-
-            return render_template('base-project.html', current_year=current_year, msg_sent=True, form=form, project=project, projects=projects, login_form=login_form)
-
-        return render_template('base-project.html', current_year=current_year, msg_sent=False, form=form, project=project, projects = projects, login_form=login_form)
-
-    return redirect(url_for('home'))
+#TODO: Get projects from api
+    response = requests.get(url=f'http://127.0.0.1:5002/api/project/{id}')
+    data   = response.json()
+    project = data
 
 
 
+    if form.validate_on_submit() and form.data:
+        name, email, subject, message = form.name.data, form.email.data, form.subject.data, form.message.data
 
+        print(f"{name, email, subject, message}")
 
+        send_confirmation_email(name=name, email=email, subject=subject)
+        send_email(name=name, subject=subject, email=email, message=message)
 
+        return render_template('base-project.html',project = project, current_year=current_year, msg_sent=True, form=form
+                            , projects=list_of_projects, login_form=login_form)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    return render_template('base-project.html', project = project,current_year=current_year, msg_sent=False, form=form,
+                           projects=list_of_projects, login_form=login_form)
 
 
 @app.route('/download', methods=['GET', 'POST'])
@@ -160,7 +127,6 @@ def download():
     return send_from_directory('static', path="files/CV.pdf", as_attachment=True)
 
 
-# TODO Add url to Go back to portfolio button
 def send_confirmation_email(name, email, subject, service='gmail'):
     # Email content
     email_content = render_template('thanks.html', name=name)
