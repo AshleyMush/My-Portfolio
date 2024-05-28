@@ -76,15 +76,34 @@ def all_projects():
 
 
 # HTTP- Create item
-# Todo: Add form to add project and parse to db
-@app.route('/add', methods=['GET', 'POST'])
-def add_project():
+@app.route('/add', methods=[ 'POST'])
+def post_to_api():
+
+    new_project = Projects(
+        name=request.form.get('name'),
+        homepage_thumbnail=request.form.get('homepage_thumbnail'),
+        img_url=request.form.get('img_url'),
+        video_url=request.form.get('video_url'),
+        category=request.form.get('category'),
+        tech_used=request.form.get('tech_used'),
+        project_url=request.form.get('project_url'),
+        description=request.form.get('description')
+    )
+    print(f"APP : {new_project}")
+
+    response = requests.post(url="http://127.0.0.1:5002/api/add", json=new_project.to_dict())
+    if response.status_code == 200:
+        return redirect(url_for('all_projects'))
+
+    else:
+        return f"Error: Could not add project {new_project.name}"
 
 
-    # Todo: request post for json data
 
 
-    return redirect(url_for('all_projects'))
+
+
+
 
 
 

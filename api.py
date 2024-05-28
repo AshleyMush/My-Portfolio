@@ -22,7 +22,26 @@ def get_project(id):
 
 
 #POST/ Create an entry - This is basically inserting data into our db
+@api_app.route('/add', methods=['POST'])
+def add_project():
+    project_data = request.get_json()
 
+
+    new_project = Projects(
+        name=project_data['name'],
+        homepage_thumbnail=project_data['homepage_thumbnail'],
+        img_url=project_data['img_url'],
+        video_url=project_data['video_url'],
+        category=project_data['category'],
+        tech_used=project_data['tech_used'],
+        project_url=project_data['project_url'],
+        description=project_data['description']
+    )
+
+    db.session.add(new_project)
+    db.session.commit()
+
+    return jsonify(message="Project added successfully"), 201
 
 
 
