@@ -47,13 +47,13 @@ def add_project():
 
 """
 
-name  = "test project",
-homepage_thumbnail  = " https://img.freepik.com/free-vector/business-idea-generation-plan-development-pensive-man-with-lightbulb-cartoon-character-technical-mindset-entrepreneurial-mind-brainstorming-process_335657-2104.jpg?t=st=1716841715~exp=1716845315~hmac=ca0fc8ce26b202f76576748a6a86f23bc04a0192568fdae976a4907d2591b448&w=826  ",
-video_url  = " https://youtu.be/J5baELvIYds?si=rxq1AScAtLDSBe0m" 
-category = " Machine Learning" ,
-tech_used  = "Pandas, numpy, Matlab, Scikit Learn, Tableu,",
-project_url  = "https://github.com/Example Project",
-description = "This is an amazing example"
+name  = "Example project",
+homepage_thumbnail  = " https://img.freepik.com/free-vector/idea-management-abstract-concept-illustration_335657-4878.jpg?t=st=1716961048~exp=1716964648~hmac=1456669674259e4e68b0ca32fb317e9da22d8ca02148737a69a9c5cf5572857e&w=740  ",
+video_url  = "https://youtu.be/rSjt1E9WHaQ?si=ocTVz7eb80MrxpPu" 
+category = " Web scraping" ,
+tech_used  = "Node Js",
+project_url  = "https://github.com/Example Project 1",
+description = "WOW, amazing description"
 
 
 
