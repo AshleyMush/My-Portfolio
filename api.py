@@ -20,44 +20,51 @@ def get_project(id):
 
     return jsonify(project.to_dict())
 
-
 #POST/ Create an entry - This is basically inserting data into our db
-@api_app.route('/add', methods=['POST'])
+"""TODO:
+request to get the json
+Commit the new project 
+return json  message of success  
+"""
+@api_app.route('/insert-to-db', methods=['POST'])
 def add_project():
-    project_data = request.get_json()
-
-
-    new_project = Projects(
-        name=project_data['name'],
-        homepage_thumbnail=project_data['homepage_thumbnail'],
-        img_url=project_data['img_url'],
-        video_url=project_data['video_url'],
-        category=project_data['category'],
-        tech_used=project_data['tech_used'],
-        project_url=project_data['project_url'],
-        description=project_data['description']
-    )
+    try:
+        project_data = request.form
+        new_project = Projects(
+            name=project_data.get('name'),
+            homepage_thumbnail=project_data.get('homepage_thumbnail'),
+            img_url=project_data.get('img_url'),
+            video_url=project_data.get('video_url'),
+            category=project_data.get('category'),
+            tech_used=project_data.get('tech_used'),
+            project_url=project_data.get('project_url'),
+            description=project_data.get('description')
+        )
+    except Exception as e:
+        return jsonify(message=f"Project POSTING was unsuccessful: {e}"), 400
 
     db.session.add(new_project)
     db.session.commit()
-
     return jsonify(message="Project added successfully"), 201
 
+# #Patch (Update some of the data)
+# @api_app.route('/patch/<int:id>', methods=['PATCH'])
+# def patch_project(id):
+#     project= Projects.query.get_or_404(id)
+#     update_data = request.get_json()
+#     print(project)
+#     for key, value in update_data.items():
+#         setattr(Projects,key ,value)
+#
+#     db.session.commit()
+#     return jsonify(message="Project updated successfully"), 200
 
 
-"""
-
-name  = "Example project",
-homepage_thumbnail  = " https://img.freepik.com/free-vector/idea-management-abstract-concept-illustration_335657-4878.jpg?t=st=1716961048~exp=1716964648~hmac=1456669674259e4e68b0ca32fb317e9da22d8ca02148737a69a9c5cf5572857e&w=740  ",
-video_url  = "https://youtu.be/rSjt1E9WHaQ?si=ocTVz7eb80MrxpPu" 
-category = " Web scraping" ,
-tech_used  = "Node Js",
-project_url  = "https://github.com/Example Project 1",
-description = "WOW, amazing description"
 
 
 
-"""
+
+
 
 
 

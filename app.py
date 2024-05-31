@@ -10,6 +10,7 @@ from forms import ContactForm, LoginForm
 from models import db, Projects
 from api import api_app
 import requests
+import json
 
 MY_EMAIL_ADDRESS = os.environ.get("EMAIL_KEY")
 MY_EMAIL_APP_PASSWORD = os.environ.get("PASSWORD_KEY")
@@ -76,27 +77,45 @@ def all_projects():
 
 
 # HTTP- Create item
+#Todo: create new project instance
+#Todo: Change the instance variables to a dict
+# Todo: use requests to post it
+# Todo: Redirect to url_for( 'All_projects
+
 @app.route('/add', methods=[ 'POST'])
-def post_to_api():
+def add_project():
+    if request.method == 'POST':
+        new_project = {
+            'name': request.form.get('name'),
+            'homepage_thumbnail': request.form.get('homepage_thumbnail'),
+            'img_url': request.form.get('img_url'),
+            'video_url': request.form.get('video_url'),
+            'category': request.form.get('category'),
+            'tech_used': request.form.get('tech_used'),
+            'project_url': request.form.get('project_url'),
+            'description': request.form.get('description')
+        }
+        response = requests.post(url="http://127.0.0.1:5002/api/insert-to-db", data=new_project)
+        if response.status_code == 201:
+            return redirect(url_for('all_projects'))
+        else:
+            return f"Error: Could not add project {new_project['name']}"
+    return render_template('add_project.html')
 
-    new_project = Projects(
-        name=request.form.get('name'),
-        homepage_thumbnail=request.form.get('homepage_thumbnail'),
-        img_url=request.form.get('img_url'),
-        video_url=request.form.get('video_url'),
-        category=request.form.get('category'),
-        tech_used=request.form.get('tech_used'),
-        project_url=request.form.get('project_url'),
-        description=request.form.get('description')
-    )
-    print(f"APP : {new_project}")
+    # @app.route('/fix/<int:id>', methods=['PATCH'])
+    # def patch_to_api(id):
+    #     params = request.args.to_dict()
+    #     print(params)
+    #     requests.patch(url=f"http://127.0.0.1:5002/api/patch/{id}", json=params)
+    #
+    #     if response.status_code == 200:
+    #         return redirect(url_for('all_projects'))
+    #     else:
+    #         return f"Error: Could not update project {id}"
 
-    response = requests.post(url="http://127.0.0.1:5002/api/add", json=new_project.to_dict())
-    if response.status_code == 200:
-        return redirect(url_for('all_projects'))
 
-    else:
-        return f"Error: Could not add project {new_project.name}"
+
+
 
 
 
