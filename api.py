@@ -15,7 +15,7 @@ def get_all_projects():
 
 # GET specific ID (Read this specific ID)
 @api_app.route('/project/<int:id>')
-def get_project(id):
+def get_selected_project(id):
     project = Projects.query.get_or_404(id)
 
     return jsonify(project.to_dict())
@@ -47,17 +47,54 @@ def add_project():
     db.session.commit()
     return jsonify(message="Project added successfully"), 201
 
-# #Patch (Update some of the data)
-# @api_app.route('/patch/<int:id>', methods=['PATCH'])
-# def patch_project(id):
-#     project= Projects.query.get_or_404(id)
-#     update_data = request.get_json()
-#     print(project)
-#     for key, value in update_data.items():
-#         setattr(Projects,key ,value)
-#
-#     db.session.commit()
-#     return jsonify(message="Project updated successfully"), 200
+#Patch (Update some of the data)
+@api_app.route('/patch/<int:id>', methods=['PATCH'])
+def patch_project(id):
+    project_selected = Projects.query.get_or_404(id)
+    query_params = request.form if request.form else request.args
+    """
+    query_params = request.form if request.form else request.args ensures we get the parameters from the form data if present, otherwise from the URL parameters.
+    """
+
+    print(project_selected)
+    print(type(query_params))
+    print(query_params)
+
+    if project_selected:
+        for key, value in query_params.items():
+            if hasattr(project_selected, key):
+                setattr(project_selected, key, value)
+            else:
+                return jsonify(message=f"Key {key} not found in the project"), 404
+
+        db.session.commit()
+        return jsonify(message="Project updated successfully"), 200
+    else:
+        return jsonify(message="Project not found"), 404
+
+
+@api_app.route('/Update/<int:id>', methods = ['PUT'])
+def update_project(id):
+    project_selected = Projects.query.get_or_404(id)
+    update_data = request.get_json()
+
+    if project_selected:
+        project_selected.name = update_data.get('name', project_selected.name)
+        project_selected.homepage_thumbnail = update_data.get('homepage_thumbnail', project_selected.homepage_thumbnail)
+        project_selected.img_url = update_data.get('img_url', project_selected.img_url)
+        project_selected.video_url = update_data.get('video_url', project_selected.video_url)
+        project_selected.category = update_data.get('category', project_selected.category)
+        project_selected.tech_used = update_data.get('tech_used', project_selected.tech_used)
+        project_selected.project_url = update_data.get('project_url', project_selected.project_url)
+        project_selected.description = update_data.get('description', project_selected.description)
+
+        db.session.commit()
+        return jsonify(message="Project updated successfully"), 200
+    else:
+        return jsonify(message="Project not found"), 404
+
+
+
 
 
 
