@@ -29,6 +29,7 @@ with app.app_context():
 
 # Register the API blueprint in app
 app.register_blueprint(api_app, url_prefix='/api')
+BASE_URL  = 'http://127.0.0.1:5002/api/'
 
 
 def all_projects_list():
@@ -36,7 +37,7 @@ def all_projects_list():
 
     :return: value of projects which is a list of dictionaries containing projects
     """
-    response = requests.get(url="http://127.0.0.1:5002/api/all")
+    response = requests.get(url=f"{BASE_URL}all")
     data = response.json()
 
     return data['projects']
@@ -69,7 +70,7 @@ def home():
 @app.route('/projects', methods=['GET', 'POST'])
 def all_projects():
     # Call the API endpoint
-    response = requests.get(url="http://127.0.0.1:5002/api/all")
+    response = requests.get(url=f"{BASE_URL}/all")
     data = response.json()
     list_of_projects = data['projects']
 
@@ -95,23 +96,60 @@ def add_project():
             'project_url': request.form.get('project_url'),
             'description': request.form.get('description')
         }
-        response = requests.post(url="http://127.0.0.1:5002/api/insert-to-db", data=new_project)
+        response = requests.post(url=f"{BASE_URL}/insert-to-db", data=new_project)
         if response.status_code == 201:
             return redirect(url_for('all_projects'))
         else:
             return f"Error: Could not add project {new_project['name']}"
     return render_template('add_project.html')
 
-    # @app.route('/fix/<int:id>', methods=['PATCH'])
-    # def patch_to_api(id):
-    #     params = request.args.to_dict()
-    #     print(params)
-    #     requests.patch(url=f"http://127.0.0.1:5002/api/patch/{id}", json=params)
-    #
-    #     if response.status_code == 200:
-    #         return redirect(url_for('all_projects'))
-    #     else:
-    #         return f"Error: Could not update project {id}"
+
+@app.route('/patch/<int:id>', methods=['Patch'])
+def send_patch_to_api(id):
+    selected_project = db.get_or_404(Projects, id)
+    if request.method =="PATCH":
+        if request.method == 'PATCH':
+            update_data = {
+                'name': request.form.get('name'),
+                'homepage_thumbnail': request.form.get('homepage_thumbnail'),
+                'img_url': request.form.get('img_url'),
+                'video_url': request.form.get('video_url'),
+                'category': request.form.get('category'),
+                'tech_used': request.form.get('tech_used'),
+                'project_url': request.form.get('project_url'),
+                'description': request.form.get('description')
+            }
+
+            response = requests.patch(url=f"{BASE_URL}/patch/{id}", data=update_data)
+            if response.status_code == 200:
+                return redirect(url_for('all_projects'))
+            else:
+                return f"Error: Could not update project {selected_project.name}"
+
+@app.route('/put/<int:id>', methods=['PUT'])
+def send_put_to_api(id):
+    selected_project = db.get_or_404(Projects, id)
+    if request.method =="PUT":
+        if request.method == 'PUT':
+            update_data = {
+                'name': request.form.get('name'),
+                'homepage_thumbnail': request.form.get('homepage_thumbnail'),
+                'img_url': request.form.get('img_url'),
+                'video_url': request.form.get('video_url'),
+                'category': request.form.get('category'),
+                'tech_used': request.form.get('tech_used'),
+                'project_url': request.form.get('project_url'),
+                'description': request.form.get('description')
+            }
+
+            response = requests.put(url=f"{BASE_URL}/put/{id}", data=update_data)
+            if response.status_code == 200:
+                return redirect(url_for('all_projects'))
+            else:
+                return f"Error: Could not update project {selected_project.name}"
+
+
+
 
 
 

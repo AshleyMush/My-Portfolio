@@ -27,9 +27,12 @@ Commit the new project
 return json  message of success  
 """
 @api_app.route('/insert-to-db', methods=['POST'])
-def add_project():
+def add_project_to_db():
     try:
-        project_data = request.form
+        # Extract data from the request
+        project_data = request.get_json()
+
+        # Create a new project with the provided data
         new_project = Projects(
             name=project_data.get('name'),
             homepage_thumbnail=project_data.get('homepage_thumbnail'),
@@ -40,21 +43,25 @@ def add_project():
             project_url=project_data.get('project_url'),
             description=project_data.get('description')
         )
-    except Exception as e:
-        return jsonify(message=f"Project POSTING was unsuccessful: {e}"), 400
 
-    db.session.add(new_project)
-    db.session.commit()
-    return jsonify(message="Project added successfully"), 201
+        # Add the new project to the database
+        db.session.add(new_project)
+        db.session.commit()
+
+        # Return a success message
+        return jsonify(message="Project added successfully"), 201
+
+    except Exception as e:
+        # If there was an error, return an error message
+        return jsonify(message=f"Error: Could not add project. Details: {str(e)}"), 400
 
 #Patch (Update some of the data)
+
 @api_app.route('/patch/<int:id>', methods=['PATCH'])
 def patch_project(id):
+
     project_selected = Projects.query.get_or_404(id)
-    query_params = request.form if request.form else request.args
-    """
-    query_params = request.form if request.form else request.args ensures we get the parameters from the form data if present, otherwise from the URL parameters.
-    """
+    query_params = request.args
 
     print(project_selected)
     print(type(query_params))
@@ -71,6 +78,7 @@ def patch_project(id):
         return jsonify(message="Project updated successfully"), 200
     else:
         return jsonify(message="Project not found"), 404
+
 
 
 @api_app.route('/Update/<int:id>', methods = ['PUT'])
@@ -92,6 +100,16 @@ def update_project(id):
         return jsonify(message="Project updated successfully"), 200
     else:
         return jsonify(message="Project not found"), 404
+
+
+
+@api_app.route('/delete-project/<int:id>', methods= ['Delete'])
+def delete_project(id):
+    selected_project = Projects.query.get_or_404(id)
+    db.session.delete(selected_project)
+    db.session.commit()
+    return jsonify({'message': 'Project Deleted'})
+
 
 
 
