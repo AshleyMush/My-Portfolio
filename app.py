@@ -2,13 +2,13 @@ from flask import Flask, abort, render_template, redirect, url_for, flash, reque
 from flask_bootstrap import Bootstrap5
 from datetime import datetime
 from flask_ckeditor import CKEditor
-import smtplib
+
 from email.mime.text import MIMEText
 import smtplib
 import os
-from forms import ContactForm, LoginForm
+from forms import ContactForm, LoginForm, AddProjectForm
 from models import db, Projects
-from api import api_app
+from api import api_blueprint
 import requests
 import json
 
@@ -28,7 +28,7 @@ with app.app_context():
     db.create_all()
 
 # Register the API blueprint in app
-app.register_blueprint(api_app, url_prefix='/api')
+app.register_blueprint(api_blueprint, url_prefix='/api')
 BASE_URL  = 'http://127.0.0.1:5002/api/'
 
 
@@ -47,7 +47,9 @@ def all_projects_list():
 def home():
     contact_form = ContactForm()
     login_form = LoginForm()
+    add_project_form = AddProjectForm()
     current_year = datetime.now().year
+
 
     list_of_projects = all_projects_list()
 
@@ -60,10 +62,30 @@ def home():
         send_confirmation_email(name=name, email=email, subject=subject)
         send_email(name=name, subject=subject, email=email, message=message)
 
-        return render_template('index.html', current_year=current_year, msg_sent=True, form=contact_form)
+        return render_template('index.html', projects=list_of_projects,
+                               current_year=current_year, msg_sent=True,
+                                login=False, form=contact_form, login_form=login_form,
+                               add_project_form=add_project_form)
+
+    if add_project_form.validate_on_submit() and add_project_form.data:
+        new_project = {
+            'name': add_project_form.name.data,
+            'homepage_thumbnail': add_project_form.homepage_thumbnail.data,
+            'img_url': add_project_form.img_url.data,
+            'video_url': add_project_form.video_url.data,
+            'category': add_project_form.category.data,
+            'tech_used': add_project_form.tech_used.data,
+            'project_url': add_project_form.project_url.data,
+            'description': add_project_form.description.data
+        }
+        response = requests.post(url=f"{BASE_URL}/insert-to-db", data=new_project)
+        if response.status_code == 201:
+            return redirect(url_for('home', project_sent=True, project_name=new_project['name'] ))
+        else:
+            return redirect(url_for('home', project_sent=False, project_name=new_project['name'] ))
 
     return render_template('index.html', projects=list_of_projects, current_year=current_year, msg_sent=False,
-                           login=False, form=contact_form, login_form=login_form, )
+                           login=False, form=contact_form, login_form=login_form, add_project_form=add_project_form)
 
 
 # Todo: Create instance of db and  pasrse  projects to projects.html

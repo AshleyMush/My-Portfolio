@@ -1,6 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, TextAreaField, PasswordField
 from wtforms.validators import DataRequired, URL, Email, Length, ValidationError, InputRequired
+from flask_ckeditor import CKEditorField
 
 class ContactForm(FlaskForm):
     name = StringField(label='Name', validators=[DataRequired(), Length(max=64)],
@@ -30,3 +31,32 @@ class LoginForm(FlaskForm):
         validators=[DataRequired(message="Do not leave this field empty"),Length(min=8, message="Pasword must be 8 characters minimum"), ])
 
     submit = SubmitField('Submit')
+
+class AddProjectForm(FlaskForm):
+    name = StringField(label='Name', validators=[DataRequired(), Length(max=64)],
+                                render_kw={"placeholder": "Name", "class": "contact-form"})
+
+    homepage_thumbnail = StringField(label='Homepage Thumbnail', validators=[DataRequired(), URL(require_tld=True)],
+                                render_kw={"placeholder": "Homepage Thumbnail", "class": "contact-form"})
+
+    img_url = StringField(label='Image URL', validators=[DataRequired(), URL(require_tld=True)],
+                                render_kw={"placeholder": "Image URL", "class": "contact-form"})
+
+    video_url = StringField(label='Video URL', validators=[DataRequired(), URL(require_tld=True)],
+                                render_kw={"placeholder": "Video URL", "class": "contact-form"})
+
+    category = StringField(label='Category', validators=[DataRequired(), Length(max=64)],
+                                render_kw={"placeholder": "Category", "class": "contact-form"})
+
+    tech_used = StringField(label='Tech Used', validators=[DataRequired(), Length(max=64)],
+                                render_kw={"placeholder": "Tech Used", "class": "contact-form"})
+
+    project_url = StringField(label='Project URL', validators=[DataRequired(), URL(require_tld=True)],
+                                render_kw={"placeholder": "Project URL", "class": "contact-form"})
+
+    description = CKEditorField(label='Description', validators=[DataRequired()])
+
+    submit = SubmitField(label='Add Project', render_kw={"class": "btn btn-dark col-12", "id":"contact_submit_btn" })
+
+
+

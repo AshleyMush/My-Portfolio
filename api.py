@@ -2,11 +2,11 @@ from flask import Flask, jsonify, request, abort, Blueprint
 from models import db, Projects
 import os
 
-api_app = Blueprint('api', __name__)
+api_blueprint = Blueprint('api', __name__)
 
 
 # GET (READ all projects)
-@api_app.route('/all', methods=['GET'])
+@api_blueprint.route('/all', methods=['GET'])
 def get_all_projects():
     projects = Projects.query.all()
 
@@ -14,7 +14,7 @@ def get_all_projects():
 
 
 # GET specific ID (Read this specific ID)
-@api_app.route('/project/<int:id>')
+@api_blueprint.route('/project/<int:id>')
 def get_selected_project(id):
     project = Projects.query.get_or_404(id)
 
@@ -26,13 +26,14 @@ request to get the json
 Commit the new project 
 return json  message of success  
 """
-@api_app.route('/insert-to-db', methods=['POST'])
+@api_blueprint.route('/insert-to-db', methods=['POST'])
 def add_project_to_db():
     try:
-        # Extract data from the request
-        project_data = request.get_json()
+        if request.is_json:
+            project_data = request.get_json()
+        else:
+            project_data = request.form.to_dict()
 
-        # Create a new project with the provided data
         new_project = Projects(
             name=project_data.get('name'),
             homepage_thumbnail=project_data.get('homepage_thumbnail'),
@@ -44,12 +45,10 @@ def add_project_to_db():
             description=project_data.get('description')
         )
 
-        # Add the new project to the database
         db.session.add(new_project)
         db.session.commit()
 
-        # Return a success message
-        return jsonify(message="Project added successfully"), 201
+        return jsonify(message="Project Added successfully"), 201
 
     except Exception as e:
         # If there was an error, return an error message
@@ -57,7 +56,7 @@ def add_project_to_db():
 
 #Patch (Update some of the data)
 
-@api_app.route('/patch/<int:id>', methods=['PATCH'])
+@api_blueprint.route('/patch/<int:id>', methods=['PATCH'])
 def patch_project(id):
 
     project_selected = Projects.query.get_or_404(id)
@@ -81,7 +80,7 @@ def patch_project(id):
 
 
 
-@api_app.route('/Update/<int:id>', methods = ['PUT'])
+@api_blueprint.route('/Update/<int:id>', methods = ['PUT'])
 def update_project(id):
     project_selected = Projects.query.get_or_404(id)
     update_data = request.get_json()
@@ -103,7 +102,7 @@ def update_project(id):
 
 
 
-@api_app.route('/delete-project/<int:id>', methods= ['Delete'])
+@api_blueprint.route('/delete-project/<int:id>', methods= ['Delete'])
 def delete_project(id):
     selected_project = Projects.query.get_or_404(id)
     db.session.delete(selected_project)

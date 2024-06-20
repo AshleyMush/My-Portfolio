@@ -89,6 +89,20 @@
 				{% include 'login-form.html' %}
 
 			</article>
+<!--TODO make project_sent hidden when it is neither True nor False-->
+<article id="add-project" class="panel">
+    {% if project_sent == True %}
+    <h1 class="apple-font">{{ project_name }} Successfully Added</h1>
+    {% elif project_name %}
+    <h1 class="apple-font">Could not add {{ project_name }} </h1>
+    {% endif %}
+
+    {% include 'add-project-form.html' %}
+	{{ ckeditor.load() }}
+	{{ ckeditor.config(name='description')}}
+</article>
+
+
 
 
 
